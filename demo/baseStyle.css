@@ -11,3 +11,9 @@ body {
   margin: 0 auto 200px;
   padding: 10px;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

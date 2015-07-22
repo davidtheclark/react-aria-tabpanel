@@ -7,6 +7,7 @@ export default class TabList extends React.Component {
     return React.createElement(tag, {
       className,
       id,
+      role: 'tablist',
     }, children);
   }
 }

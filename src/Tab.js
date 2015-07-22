@@ -1,27 +1,65 @@
 import React, { PropTypes } from 'react';
+import keys from './keys';
 
 export default class Tab extends React.Component {
-  componentDidMount() {
-    const props = this.props;
-    this.managedIndex = props.manager.tabs.push({
-      node: React.findDOMNode(this),
-      tabId: props.tabId,
+  componentWillMount() {
+    const { manager, tabId } = this.props;
+    this.managedIndex = manager.tabs.push({
+      tabId,
+      element: this,
     }) - 1;
+    if (!manager.activeTabId && this.managedIndex === 0) {
+      manager.activeTabId = tabId;
+    } else if (manager.activeTabId === tabId) {
+      manager.currentTabIndex = this.managedIndex;
+    }
+  }
+
+  componentDidMount() {
+    const { manager } = this.props;
+    manager.tabs[this.managedIndex].node = React.findDOMNode(this);
   }
 
   handleClick() {
-    this.props.manager.changeTab(this.props.tabId);
+    const { manager } = this.props;
+    manager.changeTab(this.managedIndex);
+  }
+
+  handleKeyDown(e) {
+    const { manager } = this.props;
+    switch (e.key) {
+      case keys.LEFT:
+      case keys.UP:
+        e.preventDefault();
+        manager.changePrev();
+        break;
+      case keys.RIGHT:
+      case keys.DOWN:
+        e.preventDefault();
+        manager.changeNext();
+        break;
+      default:
+    }
   }
 
   render() {
-    const { tag, children, className, id } = this.props;
+    const props = this.props;
+    const isActive = props.manager.activeTabId === props.tabId;
 
-    return React.createElement(tag, {
-      className,
-      id,
-      tabIndex: '-1',
+    const kids = (function() {
+      if (typeof props.children === 'function') return props.children({ isActive });
+      return props.children;
+    }());
+
+    return React.createElement(props.tag, {
+      className: props.className,
+      id: props.id,
+      tabIndex: (isActive) ? '0' : '-1',
       onClick: this.handleClick.bind(this),
-    }, children);
+      onKeyDown: this.handleKeyDown.bind(this),
+      role: 'tab',
+      'aria-controls': props.tabId,
+    }, kids);
   }
 }
 
@@ -29,7 +67,7 @@ Tab.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
-    PropTypes.function,
+    PropTypes.func,
     PropTypes.string,
   ]).isRequired,
   tabId: PropTypes.string.isRequired,

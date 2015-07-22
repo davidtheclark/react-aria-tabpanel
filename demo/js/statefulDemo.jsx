@@ -11,32 +11,61 @@ class StatefulDemo extends React.Component {
       <div>
         <TabList>
           <ul>
-            <li>
-              <Tab tabId='1'>
-                one
+            <li className='Tabs-tablistItem'>
+              <Tab tabId='1' className='Tabs-tab'>
+                {tabState => {
+                  let cl = 'Tabs-tabInner Tabs-tabInner--first';
+                  if (tabState.isActive) cl += ' is-active';
+                  return (
+                    <div className={cl}>
+                      one
+                    </div>
+                  );
+                }}
               </Tab>
             </li>
-            <li>
-              <Tab tabId='2'>
-                two
+            <li className='Tabs-tablistItem'>
+              <Tab tabId='2' className='Tabs-tab'>
+                {tabState => {
+                  let cl = 'Tabs-tabInner';
+                  if (tabState.isActive) cl += ' is-active';
+                  return (
+                    <div className={cl}>
+                      two
+                    </div>
+                  );
+                }}
               </Tab>
             </li>
-            <li>
-              <Tab tabId='3'>
-                three
+            <li className='Tabs-tablistItem'>
+              <Tab tabId='3' className='Tabs-tab'>
+                {tabState => {
+                  let cl = 'Tabs-tabInner';
+                  if (tabState.isActive) cl += ' is-active';
+                  return (
+                    <div className={cl}>
+                      three
+                    </div>
+                  );
+                }}
               </Tab>
             </li>
           </ul>
         </TabList>
-        <TabPanel tabId='1'>
-          tab panel 1
-        </TabPanel>
-        <TabPanel tabId='2'>
-          tab panel 2
-        </TabPanel>
-        <TabPanel tabId='3'>
-          tab panel 3
-        </TabPanel>
+        <div className='Tabs-panel'>
+          <TabPanel tabId='1'>
+            tab panel 1
+            <button>inner focusable</button>
+          </TabPanel>
+          <TabPanel tabId='2'>
+            tab panel 2
+            <button>inner focusable</button>
+          </TabPanel>
+          <TabPanel tabId='3'>
+            tab panel 3
+            <button>inner focusable</button>
+          </TabPanel>
+        </div>
       </div>
     );
   }

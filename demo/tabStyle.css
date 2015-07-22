@@ -1,0 +1,32 @@
+.Tabs-tablistItem {
+  display: inline-block;
+}
+
+.Tabs-panel {
+  border: 1px solid #000;
+  padding: 1em;
+}
+
+.Tabs-tab {
+  cursor: pointer;
+}
+
+.Tabs-tab:focus {
+  box-shadow: 0 0 3px 3px #09f;
+}
+
+.Tabs-tabInner {
+  border-top: 1px solid #000;
+  border-right: 1px solid #000;
+  position: relative;
+  padding: 5px 10px;
+  background: #ccc;
+}
+
+.Tabs-tabInner--first {
+  border-left: 1px solid #000;
+}
+
+.Tabs-tabInner.is-active {
+background: #fff;
+}

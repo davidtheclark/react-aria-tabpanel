@@ -1,2 +1,5 @@
 # react-aria-tabpanel
-A fully accessible, extravagantly flexible, React-powered Tab Panel component
+
+A fully accessible, extravagantly flexible, React-powered Tab Panel component.
+
+[In the works.]

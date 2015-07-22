@@ -1,6 +1,6 @@
 {
   "name": "react-aria-tabpanel",
-  "version": "0.7.0",
+  "version": "0.1.0",
   "description": "A fully accessible, extravagantly flexible, React-powered Tab Panel component",
   "main": "index.js",
   "scripts": {

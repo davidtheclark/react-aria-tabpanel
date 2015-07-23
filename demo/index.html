@@ -12,7 +12,9 @@
 
     <h1 tabindex="0">react-aria-tabpanel demo</h1>
 
-    <h2>Stateful demo</h2>
+    <h2>
+      Stateful demo
+    </h2>
     <p>
       The following tab component maintains its own internal state.
     </p>
@@ -21,7 +23,9 @@
       <div id="stateful-demo"></div>
     </div>
 
-    <h2>Stateless demo</h2>
+    <h2>
+      Stateless demo
+    </h2>
     <p>
       The next one just runs a <code>handleChange()</code> function passed in from its parent — so it the tabs themselves are stateless.
     </p>
@@ -29,6 +33,40 @@
     <div style="margin-bottom: 2em;">
       <div id="stateless-demo"></div>
     </div>
+
+    <h2>
+      Interactions to try
+    </h2>
+    <ul>
+      <li>
+        Tab through the page. Notice that only the active tab receives focus.
+      </li>
+      <li>
+        With focus on the active tab, hit Left, Right, Up, and Down Arrows to move through the tabs.
+      </li>
+      <li>
+        With focus <em>inside</em> the active tab panel (on one of those links), Control+Up Arrow will put focus on the active tab.
+      </li>
+    </ul>
+
+    <p>
+      These interactions are intended to fulfill the <a href="http://www.w3.org/TR/wai-aria-practices/#tabpanel">WAI-ARIA Tab Panel Design Pattern</a>.
+    </p>
+
+    <h2>
+      What else should I know?
+    </h2>
+
+    <p>
+      The provided Tab and TabPanel components can accept strings, elements, arrays of elements, and also <em>functions</em> (which receive the tab state as an argument). So <strong>anything is possible</strong>.
+    </p>
+
+    <h2>
+      Great! What do I do now?
+    </h2>
+    <p>
+      <a href="https://github.com/davidtheclark/react-aria-tabpanel">Return to the repository.</a>
+    </p>
 
     <script src="demo-bundle.js"></script>
   </body>

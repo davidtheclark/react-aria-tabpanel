@@ -5,65 +5,39 @@ class StatefulDemo extends React.Component {
   componentWillMount() {
     this.ariaTabPanel = ariaTabPanel();
   }
+
   render() {
     const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     return (
       <div>
         <TabList>
-          <ul>
+          <ul className='Tabs-tablist'>
             <li className='Tabs-tablistItem'>
               <Tab tabId='1' className='Tabs-tab'>
-                {tabState => {
-                  let cl = 'Tabs-tabInner Tabs-tabInner--first';
-                  if (tabState.isActive) cl += ' is-active';
-                  return (
-                    <div className={cl}>
-                      one
-                    </div>
-                  );
-                }}
+                {demoTab.bind(null, 'one')}
               </Tab>
             </li>
             <li className='Tabs-tablistItem'>
               <Tab tabId='2' className='Tabs-tab'>
-                {tabState => {
-                  let cl = 'Tabs-tabInner';
-                  if (tabState.isActive) cl += ' is-active';
-                  return (
-                    <div className={cl}>
-                      two
-                    </div>
-                  );
-                }}
+                {demoTab.bind(null, 'two')}
               </Tab>
             </li>
             <li className='Tabs-tablistItem'>
               <Tab tabId='3' className='Tabs-tab'>
-                {tabState => {
-                  let cl = 'Tabs-tabInner';
-                  if (tabState.isActive) cl += ' is-active';
-                  return (
-                    <div className={cl}>
-                      three
-                    </div>
-                  );
-                }}
+                {demoTab.bind(null, 'three')}
               </Tab>
             </li>
           </ul>
         </TabList>
         <div className='Tabs-panel'>
           <TabPanel tabId='1'>
-            tab panel 1
-            <button>inner focusable</button>
+            Lorem <a href='#'>ipsum</a> dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </TabPanel>
           <TabPanel tabId='2'>
-            tab panel 2
-            <button>inner focusable</button>
+            Ut <a href='#'>enim</a> ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </TabPanel>
           <TabPanel tabId='3'>
-            tab panel 3
-            <button>inner focusable</button>
+            Duis <a href='#'>aute</a> irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </TabPanel>
         </div>
       </div>
@@ -75,3 +49,13 @@ React.render(
   <StatefulDemo />,
   document.getElementById('stateful-demo')
 );
+
+function demoTab(content, tabState) {
+  let cl = 'Tabs-tabInner';
+  if (tabState.isActive) cl += ' is-active';
+  return (
+    <div className={cl}>
+      {content}
+    </div>
+  );
+}

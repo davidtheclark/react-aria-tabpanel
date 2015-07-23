@@ -44,7 +44,6 @@
     "accessibility",
     "tabs",
     "tab-panel",
-    "dropdown",
     "widget"
   ],
   "dependencies": {

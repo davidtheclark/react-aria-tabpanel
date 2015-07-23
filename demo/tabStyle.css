@@ -1,9 +1,19 @@
+.Tabs-tablist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .Tabs-tablistItem {
   display: inline-block;
 }
 
+.Tabs-tablistItem + .Tabs-tablistItem {
+  margin-left: 0.3em;
+}
+
 .Tabs-panel {
-  border: 1px solid #000;
+  border: 1px solid #ccc;
   padding: 1em;
 }
 
@@ -16,17 +26,25 @@
 }
 
 .Tabs-tabInner {
-  border-top: 1px solid #000;
-  border-right: 1px solid #000;
+  border: 1px solid transparent;
+  border-bottom: 0;
   position: relative;
-  padding: 5px 10px;
+  padding: 5px 20px;
   background: #ccc;
-}
-
-.Tabs-tabInner--first {
-  border-left: 1px solid #000;
+  position: relative;
 }
 
 .Tabs-tabInner.is-active {
-background: #fff;
+  background: #fff;
+  border-color: #ccc;
+}
+
+.Tabs-tabInner.is-active::after {
+  content: "";
+  background: #fff;
+  height: 1px;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
 }

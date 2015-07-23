@@ -1,2 +1,2 @@
-// import './statefulDemo';
+import './statefulDemo';
 import './statelessDemo';

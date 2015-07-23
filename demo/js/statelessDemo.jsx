@@ -7,8 +7,7 @@ const tabData = [
     id: '1',
     content: (
       <div>
-        tab panel one
-        <button>inner focusable</button>
+        Lorem <a href='#'>ipsum</a> dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </div>
     ),
   },
@@ -17,8 +16,7 @@ const tabData = [
     id: '2',
     content: (
       <div>
-        tab panel two
-        <button>inner focusable</button>
+        Ut <a href='#'>enim</a> ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </div>
     ),
   },
@@ -27,8 +25,7 @@ const tabData = [
     id: '3',
     content: (
       <div>
-        tab panel three
-        <button>inner focusable</button>
+        Duis <a href='#'>aute</a> irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
     ),
   },
@@ -57,7 +54,6 @@ class StatefulDemo extends React.Component {
 
     const tabs = tabData.map((t, i) => {
       let innerCl = 'Tabs-tabInner';
-      if (i === 0) innerCl += ' Tabs-tabInner--first';
       if (t.id === activeTab) innerCl += ' is-active';
       return (
         <li className='Tabs-tablistItem' key={i}>
@@ -81,7 +77,7 @@ class StatefulDemo extends React.Component {
     return (
       <div>
         <TabList>
-          <ul>
+          <ul className='Tabs-tablist'>
             {tabs}
           </ul>
         </TabList>

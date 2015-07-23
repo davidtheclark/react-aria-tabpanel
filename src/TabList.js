@@ -16,7 +16,6 @@ TabList.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.arrayOf(PropTypes.element),
-    PropTypes.string,
   ]).isRequired,
   manager: PropTypes.object.isRequired,
   className: PropTypes.string,

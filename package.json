@@ -1,7 +1,7 @@
 {
   "name": "react-aria-tabpanel",
   "version": "0.1.0",
-  "description": "A fully accessible, extravagantly flexible, React-powered Tab Panel component",
+  "description": "A style- and markup-agnostic, React-powered Tab Panel component that fulfills the WAI-ARIA Design Pattern",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",

@@ -38,15 +38,15 @@ test('Manager initialization without options', t => {
 });
 
 test('Manager initialization with options', t => {
-  const handleChange = sinon.spy();
+  const onChange = sinon.spy();
   const m = mockManager({
-    handleChange,
+    onChange,
     activeTabId: 'second',
   });
   t.equal(m.currentTabIndex, 0);
   t.equal(m.activeTabId, 'second');
   t.deepEqual(m.options, {
-    handleChange,
+    onChange,
     activeTabId: 'second',
   });
   t.end();
@@ -127,7 +127,7 @@ test('Manager#changePrev', t => {
   t.end();
 });
 
-test('Manager#changeTab without handleChange option', t => {
+test('Manager#changeTab without onChange option', t => {
   const m = mockManager();
   sinon.stub(m, 'moveFocus');
 

@@ -15,8 +15,8 @@ export default class Manager {
   changeTab(tabIndex) {
     const newActiveTabId = this.tabs[tabIndex].tabId;
 
-    if (this.options.handleChange) {
-      this.options.handleChange(newActiveTabId);
+    if (this.options.onChange) {
+      this.options.onChange(newActiveTabId);
     } else {
       if (newActiveTabId === this.activeTabId) return;
       this.tabPanels.forEach(tabPanel => { tabPanel.element.forceUpdate(); });

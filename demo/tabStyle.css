@@ -80,7 +80,6 @@
 
 .FancyTabs-tab:focus {
   text-decoration: underline;
-  color: #fff;
   outline: 0;
 }
 
@@ -91,15 +90,16 @@
   padding: 15px 20px;
   background: #ccc;
   position: relative;
-  transition: transform 0.2s ease-out;
-  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, background 0.2s linear;
+  -webkit-transition: -webkit-transform 0.2s ease-out, background 0.2s linear;
   transform: translateY(10px);
   -webkit-transform: translateY(10px);
 }
 
 .FancyTabs-tabInner.is-active {
   background: #A9F47E;
-  border-color: #ccc;
+  border-color: #41D0CB;
+  border-width: 1px;
   transform: translateY(0);
   -webkit-transform: translateY(0);
 }

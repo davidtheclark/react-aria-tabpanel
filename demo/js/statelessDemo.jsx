@@ -31,7 +31,7 @@ const tabData = [
   },
 ];
 
-class StatefulDemo extends React.Component {
+class StatelessDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { activeTab: '2' };
@@ -39,7 +39,7 @@ class StatefulDemo extends React.Component {
 
   componentWillMount() {
     this.ariaTabPanel = ariaTabPanel({
-      handleChange: this.setTab.bind(this),
+      onChange: this.setTab.bind(this),
       activeTabId: '2',
     });
   }
@@ -90,6 +90,6 @@ class StatefulDemo extends React.Component {
 }
 
 React.render(
-  <StatefulDemo />,
+  <StatelessDemo />,
   document.getElementById('stateless-demo')
 );

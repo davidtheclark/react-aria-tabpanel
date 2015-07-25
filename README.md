@@ -10,6 +10,8 @@ A React component that provides a style- and markup-agnostic foundation for full
 
 *If you think that this component does not satisfy the ARIA spec of if you know of other ways to make it more accessible, please file an issue.*
 
+If you're interested in this project, you should also checkout [react-aria-menubutton](https://github.com/davidtheclark/react-aria-menubutton).
+
 ## Installation
 
 ```

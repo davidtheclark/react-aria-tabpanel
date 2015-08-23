@@ -10,7 +10,7 @@ A React component that provides a style- and markup-agnostic foundation for full
 
 *If you think that this component does not satisfy the ARIA spec of if you know of other ways to make it more accessible, please file an issue.*
 
-** If you like this kind of module (accessible, flexible, unstyled) you should also check out these projects:**
+**If you like this kind of module (accessible, flexible, unstyled) you should also check out these projects:**
 - [react-aria-modal](https://github.com/davidtheclark/react-aria-modal)
 - [react-aria-menubutton](https://github.com/davidtheclark/react-aria-menubutton)
 

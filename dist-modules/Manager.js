@@ -15,7 +15,6 @@ var Manager = (function () {
     // These component references are added when the relevant components mount
     this.tabs = [];
     this.tabPanels = [];
-    this.tabList = null;
 
     // State trackers
     this.currentTabIndex = 0;

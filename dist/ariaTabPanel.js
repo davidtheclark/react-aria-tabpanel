@@ -26,8 +26,8 @@ var Manager = (function () {
   Manager.prototype.changeTab = function changeTab(tabIndex) {
     var newActiveTabId = this.tabs[tabIndex].tabId;
 
-    if (this.options.handleChange) {
-      this.options.handleChange(newActiveTabId);
+    if (this.options.onChange) {
+      this.options.onChange(newActiveTabId);
     } else {
       if (newActiveTabId === this.activeTabId) return;
       this.tabPanels.forEach(function (tabPanel) {
@@ -230,7 +230,7 @@ var TabList = (function (_React$Component) {
 exports['default'] = TabList;
 
 TabList.propTypes = {
-  children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.arrayOf(_react.PropTypes.element), _react.PropTypes.string]).isRequired,
+  children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.arrayOf(_react.PropTypes.element)]).isRequired,
   manager: _react.PropTypes.object.isRequired,
   className: _react.PropTypes.string,
   id: _react.PropTypes.string,

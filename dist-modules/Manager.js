@@ -25,8 +25,8 @@ var Manager = (function () {
   Manager.prototype.changeTab = function changeTab(tabIndex) {
     var newActiveTabId = this.tabs[tabIndex].tabId;
 
-    if (this.options.handleChange) {
-      this.options.handleChange(newActiveTabId);
+    if (this.options.onChange) {
+      this.options.onChange(newActiveTabId);
     } else {
       if (newActiveTabId === this.activeTabId) return;
       this.tabPanels.forEach(function (tabPanel) {

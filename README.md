@@ -6,7 +6,7 @@ Please check out [the demo](http://davidtheclark.github.io/react-aria-tabpanel/d
 
 ## Project Goal
 
-A React component that provides a style- and markup-agnostic foundation for fully accessible tab panels. *You provide the inner elements*: **this module gives you wrapper components that will handle keyboard interactions and ARIA attributes**.
+A React component that provides a style- and markup-agnostic foundation for fully accessible tab panels. *You provide the inner elements*: **this module gives you "smart" wrapper components that will handle keyboard interactions and ARIA attributes**.
 
 *If you think that this component does not satisfy the ARIA spec of if you know of other ways to make it more accessible, please file an issue.*
 
@@ -46,7 +46,7 @@ Using globals/UMD, you must do the following:
 </script>
 ```
 
-**You *get to* (have to) write your own CSS, your own way!**
+**You *get to* (have to) write your own CSS, your own way.**
 
 ### ariaTabPanel([options])
 

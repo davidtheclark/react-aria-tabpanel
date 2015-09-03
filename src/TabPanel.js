@@ -42,10 +42,8 @@ export default class TabPanel extends React.Component {
 
 TabPanel.propTypes = {
   children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.function,
-    PropTypes.string,
+    PropTypes.node,
+    PropTypes.func,
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
   manager: PropTypes.object.isRequired,

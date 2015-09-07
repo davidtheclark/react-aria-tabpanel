@@ -65,10 +65,8 @@ export default class Tab extends React.Component {
 
 Tab.propTypes = {
   children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.node,
     PropTypes.func,
-    PropTypes.string,
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
   manager: PropTypes.object.isRequired,

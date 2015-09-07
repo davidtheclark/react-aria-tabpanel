@@ -13,10 +13,7 @@ export default class TabList extends React.Component {
 }
 
 TabList.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   manager: PropTypes.object.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,

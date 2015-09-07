@@ -22,6 +22,12 @@ npm install react-aria-tabpanel
 
 One dependency: React 0.13x.
 
+## Tested Browser Support
+
+Basically IE9+. See `.zuul.yml` for more details.
+
+Automated testing is done with [zuul](https://github.com/defunctzombie/zuul) and [Open Suace](https://saucelabs.com/opensauce/).
+
 ## Usage
 
 There are two ways to consume this module:
@@ -339,3 +345,9 @@ An id value.
 Type: `String`
 
 A class value.
+
+## Development
+
+Lint with `npm run lint`.
+
+Test with `npm run test-dev`, which will give you a URL to open in your browser. Look at the console log for TAP output.

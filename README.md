@@ -232,7 +232,7 @@ Each wrapper should contain *only one* `TabList`, *multiple* `Tab`s, and *multip
 
 #### options
 
-All options are optional.
+All props are optional.
 
 ##### onChange
 
@@ -251,6 +251,30 @@ Directly tell the tabs which one is active. By default, the first tab provided w
 - to give the tabs an initial active tab other than the first, or
 - if you have seized control of the state (via an `onChange` function), to continuously tell the tabs which one is active.
 
+##### tag
+
+Type: `String` Default: `'div'`
+
+The HTML tag for this element.
+
+##### id
+
+Type: `String`
+
+An id value.
+
+##### className
+
+Type: `String`
+
+A class value.
+
+##### style
+
+Type: `Object`
+
+An object for inline styles.
+
 ### `TabList`
 
 Wrap the `Tab`s with a `TabList`.
@@ -259,7 +283,7 @@ A `TabList`'s children should React elements.
 
 #### props
 
-*All props are optional.*
+All props are optional.
 
 ##### tag
 
@@ -278,6 +302,12 @@ An id value.
 Type: `String`
 
 A class value.
+
+##### style
+
+Type: `Object`
+
+An object for inline styles.
 
 ### `Tab`
 
@@ -298,7 +328,7 @@ A `Tab`'s children may be any of the following:
 
 #### props
 
-*All props are optional.*
+All props are optional.
 
 ##### tag
 
@@ -317,6 +347,12 @@ An id value.
 Type: `String`
 
 A class value.
+
+##### style
+
+Type: `Object`
+
+An object for inline styles.
 
 ### `TabPanel`
 
@@ -335,7 +371,7 @@ A `TabPanels`'s children may be any of the following:
 
 #### props
 
-*All props are optional.*
+All props are optional.
 
 ##### tag
 
@@ -354,6 +390,12 @@ An id value.
 Type: `String`
 
 A class value.
+
+##### style
+
+Type: `Object`
+
+An object for inline styles.
 
 ## Contributing & Development
 

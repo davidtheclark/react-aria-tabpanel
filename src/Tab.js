@@ -56,6 +56,7 @@ export default class Tab extends React.Component {
     return React.createElement(props.tag, {
       className: props.className,
       id: props.id,
+      style: props.style,
       tabIndex: (isActive) ? '0' : '-1',
       onClick: this.handleClick.bind(this),
       onKeyDown: this.handleKeyDown.bind(this),
@@ -72,6 +73,7 @@ Tab.propTypes = {
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
   className: PropTypes.string,
+  style: PropTypes.object,
   id: PropTypes.string,
   tag: PropTypes.string,
 };

@@ -14,7 +14,7 @@ function mockManager() {
   };
 }
 
-test('TabPanel creation with only required props and a string child', t => {
+test('TabPanel DOM with only required props and a string child', t => {
   const manager = mockManager();
   const wrapper = ReactTestUtils.renderIntoDocument(
     <MockWrapper mockManager={manager}>
@@ -32,6 +32,7 @@ test('TabPanel creation with only required props and a string child', t => {
   t.equal(node.tagName.toLowerCase(), 'div');
   t.equal(node.getAttribute('id'), 'foo');
   t.notOk(node.getAttribute('class'));
+  t.notOk(node.getAttribute('style'));
   t.equal(node.getAttribute('role'), 'tabpanel');
   t.equal(node.getAttribute('aria-hidden'), 'false');
   t.equal(node.innerHTML, 'bar');
@@ -39,7 +40,7 @@ test('TabPanel creation with only required props and a string child', t => {
   t.end();
 });
 
-test('TabPanel creation with all possible props and an element child', t => {
+test('TabPanel DOM with all possible props and an element child', t => {
   const manager = mockManager();
   const wrapper = ReactTestUtils.renderIntoDocument(
     <MockWrapper mockManager={manager}>
@@ -47,6 +48,7 @@ test('TabPanel creation with all possible props and an element child', t => {
         tabId='foo'
         className='bar'
         tag='section'
+        style={{ top: '1em' }}
       >
         <div>hooha</div>
       </TabPanel>
@@ -61,6 +63,7 @@ test('TabPanel creation with all possible props and an element child', t => {
   t.equal(node.tagName.toLowerCase(), 'section');
   t.equal(node.getAttribute('id'), 'foo');
   t.equal(node.getAttribute('class'), 'bar');
+  t.equal(node.getAttribute('style').replace(/[ ;]/g, ''), 'top:1em');
   t.equal(node.getAttribute('role'), 'tabpanel');
   t.equal(node.getAttribute('aria-hidden'), 'false');
   t.equal(node.children.length, 1);

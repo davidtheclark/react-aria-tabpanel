@@ -15,6 +15,7 @@ test('TabList creation with only required props', t => {
   t.equal(node.tagName.toLowerCase(), 'div');
   t.notOk(node.getAttribute('id'));
   t.notOk(node.getAttribute('class'));
+  t.notOk(node.getAttribute('style'));
   t.equal(node.getAttribute('role'), 'tablist');
   t.equal(node.firstChild.tagName.toLowerCase(), 'div');
   t.equal(node.firstChild.innerHTML, 'foo');
@@ -28,6 +29,7 @@ test('TabList creation with all props', t => {
       id='bar'
       className='baz'
       tag='ul'
+      style={{ top: '1em' }}
     >
       <p>foo</p>
       <p>foofoo</p>
@@ -38,6 +40,7 @@ test('TabList creation with all props', t => {
   t.equal(node.tagName.toLowerCase(), 'ul');
   t.equal(node.getAttribute('id'), 'bar');
   t.equal(node.getAttribute('class'), 'baz');
+  t.equal(node.getAttribute('style').replace(/[ ;]/g, ''), 'top:1em');
   t.equal(node.getAttribute('role'), 'tablist');
   t.equal(node.children.length, 2);
   t.equal(node.firstChild.tagName.toLowerCase(), 'p');

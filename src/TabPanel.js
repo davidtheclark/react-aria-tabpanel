@@ -36,6 +36,7 @@ export default class TabPanel extends React.Component {
       id: props.tabId,
       onKeyDown: this.handleKeyDown.bind(this),
       role: 'tabpanel',
+      style: props.style,
       'aria-hidden': !isActive,
     }, kids);
   }
@@ -48,6 +49,7 @@ TabPanel.propTypes = {
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
   className: PropTypes.string,
+  style: PropTypes.object,
   tag: PropTypes.string,
 };
 

@@ -39,6 +39,7 @@ test('Tab with only required props and a string child', t => {
   t.equal(tabNode.tagName.toLowerCase(), 'div');
   t.notOk(tabNode.getAttribute('id'));
   t.notOk(tabNode.getAttribute('class'));
+  t.notOk(tabNode.getAttribute('style'));
   t.equal(tabNode.getAttribute('tabindex'), '0');
   t.equal(tabNode.getAttribute('role'), 'tab');
   t.equal(tabNode.getAttribute('aria-controls'), 'foo');
@@ -57,6 +58,7 @@ test('Tab with all props and element child', t => {
         className='bar'
         tag='li'
         id='hooha'
+        style={{ top: '1em' }}
       >
         <div>goat</div>
       </Tab>
@@ -75,6 +77,7 @@ test('Tab with all props and element child', t => {
   t.equal(tabNode.tagName.toLowerCase(), 'li');
   t.equal(tabNode.getAttribute('id'), 'hooha');
   t.equal(tabNode.getAttribute('class'), 'bar');
+  t.equal(tabNode.getAttribute('style').replace(/[ ;]/g, ''), 'top:1em');
   t.equal(tabNode.getAttribute('tabindex'), '0');
   t.equal(tabNode.getAttribute('role'), 'tab');
   t.equal(tabNode.getAttribute('aria-controls'), 'foo');
@@ -109,6 +112,7 @@ test('Tab that is not first to register, is not active', t => {
   t.equal(tabNode.tagName.toLowerCase(), 'div');
   t.notOk(tabNode.getAttribute('id'));
   t.notOk(tabNode.getAttribute('class'));
+  t.notOk(tabNode.getAttribute('style'));
   t.equal(tabNode.getAttribute('tabindex'), '-1');
   t.equal(tabNode.getAttribute('role'), 'tab');
   t.equal(tabNode.getAttribute('aria-controls'), 'foo');

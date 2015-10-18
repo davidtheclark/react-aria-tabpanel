@@ -328,7 +328,7 @@ A `Tab`'s children may be any of the following:
 
 All props are optional except `tabId`.
 
-#### tabId
+##### tabId
 
 Type: `String` **required**
 
@@ -377,7 +377,7 @@ A `TabPanels`'s children may be any of the following:
 
 All props are optional except `tabId`.
 
-#### tabId
+##### tabId
 
 Type: `String` **required**
 

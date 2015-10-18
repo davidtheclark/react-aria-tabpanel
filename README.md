@@ -30,7 +30,7 @@ npm install react-aria-tabpanel
 
 ### React Dependency
 
-Version 2+ is compatible with React 0.14.
+Version 2/3+ is compatible with React 0.14.
 
 Version 1+ is compatible with React 0.13.
 
@@ -326,7 +326,13 @@ A `Tab`'s children may be any of the following:
 
 #### props
 
-All props are optional.
+All props are optional except `tabId`.
+
+#### tabId
+
+Type: `String` **required**
+
+The id string that ties this `Tab` to its `TabPanel`: so there must be a `TabPanel` component with a matching `tabId`.
 
 ##### tag
 
@@ -369,7 +375,13 @@ A `TabPanels`'s children may be any of the following:
 
 #### props
 
-All props are optional.
+All props are optional except `tabId`.
+
+#### tabId
+
+Type: `String` **required**
+
+The id string that ties this `TabPanel` to its `Tab`: so there must be a `Tab` component with a matching `tabId`.
 
 ##### tag
 
@@ -377,17 +389,17 @@ Type: `String` Default: `'div'`
 
 The HTML tag for this element.
 
-##### id
-
-Type: `String`
-
-An id value.
-
 ##### className
 
 Type: `String`
 
 A class value.
+
+##### id
+
+Type: `String`
+
+An id value.
 
 ##### style
 

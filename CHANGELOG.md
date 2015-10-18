@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+- Add `id` prop to `TabPanel`, and use it for the DOM node's id attribute (rather than `tabId`).
+  Intended to push this with 2.0.0, as it is a slight but breaking change.
+
 ## 2.0.0
 - Upgrade to react 0.14 and its companion react-dom.
 - Use React's `context` to simplify the API, which involves adding the `Wrapper` component.

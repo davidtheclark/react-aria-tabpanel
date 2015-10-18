@@ -30,7 +30,7 @@ test('TabPanel DOM with only required props and a string child', t => {
   t.equal(manager.activeTabId, 'foo');
 
   t.equal(node.tagName.toLowerCase(), 'div');
-  t.equal(node.getAttribute('id'), 'foo');
+  t.notOk(node.getAttribute('id'));
   t.notOk(node.getAttribute('class'));
   t.notOk(node.getAttribute('style'));
   t.equal(node.getAttribute('role'), 'tabpanel');
@@ -45,7 +45,8 @@ test('TabPanel DOM with all possible props and an element child', t => {
   const wrapper = ReactTestUtils.renderIntoDocument(
     <MockWrapper mockManager={manager}>
       <TabPanel
-        tabId='foo'
+        id='foo'
+        tabId='foopdedoop'
         className='bar'
         tag='section'
         style={{ top: '1em' }}
@@ -57,8 +58,8 @@ test('TabPanel DOM with all possible props and an element child', t => {
   const element = ReactTestUtils.findRenderedComponentWithType(wrapper, TabPanel);
   const node = ReactDOM.findDOMNode(element);
 
-  t.deepEqual(manager.tabPanels, [{ element, tabId: 'foo' }]);
-  t.equal(manager.activeTabId, 'foo');
+  t.deepEqual(manager.tabPanels, [{ element, tabId: 'foopdedoop' }]);
+  t.equal(manager.activeTabId, 'foopdedoop');
 
   t.equal(node.tagName.toLowerCase(), 'section');
   t.equal(node.getAttribute('id'), 'foo');
@@ -91,7 +92,6 @@ test('TabPanel that is not first to register, is not active', t => {
   t.equal(manager.activeTabId, 'prior');
 
   t.equal(node.tagName.toLowerCase(), 'div');
-  t.equal(node.getAttribute('id'), 'foo');
   t.equal(node.getAttribute('aria-hidden'), 'true');
   t.equal(node.children.innerHTML, undefined);
 

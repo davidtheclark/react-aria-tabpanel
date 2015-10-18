@@ -1,9 +1,10 @@
 import test from 'tape';
 import sinon from 'sinon';
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
+import MockWrapper from './MockWrapper';
 import TabPanel from '../src/TabPanel';
-
-const ReactTestUtils = React.addons.TestUtils;
 
 function mockManager() {
   return {
@@ -15,20 +16,20 @@ function mockManager() {
 
 test('TabPanel creation with only required props and a string child', t => {
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={manager}
-      tabId='foo'
-    >
-      bar
-    </TabPanel>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <TabPanel tabId='foo'>
+        bar
+      </TabPanel>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const element = ReactTestUtils.findRenderedComponentWithType(wrapper, TabPanel);
+  const node = ReactDOM.findDOMNode(element);
 
   t.deepEqual(manager.tabPanels, [{ element, tabId: 'foo' }]);
   t.equal(manager.activeTabId, 'foo');
 
-  t.equal(node.tagName, 'DIV');
+  t.equal(node.tagName.toLowerCase(), 'div');
   t.equal(node.getAttribute('id'), 'foo');
   t.notOk(node.getAttribute('class'));
   t.equal(node.getAttribute('role'), 'tabpanel');
@@ -40,28 +41,30 @@ test('TabPanel creation with only required props and a string child', t => {
 
 test('TabPanel creation with all possible props and an element child', t => {
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={manager}
-      tabId='foo'
-      className='bar'
-      tag='section'
-    >
-      <div>hooha</div>
-    </TabPanel>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <TabPanel
+        tabId='foo'
+        className='bar'
+        tag='section'
+      >
+        <div>hooha</div>
+      </TabPanel>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const element = ReactTestUtils.findRenderedComponentWithType(wrapper, TabPanel);
+  const node = ReactDOM.findDOMNode(element);
 
   t.deepEqual(manager.tabPanels, [{ element, tabId: 'foo' }]);
   t.equal(manager.activeTabId, 'foo');
 
-  t.equal(node.tagName, 'SECTION');
+  t.equal(node.tagName.toLowerCase(), 'section');
   t.equal(node.getAttribute('id'), 'foo');
   t.equal(node.getAttribute('class'), 'bar');
   t.equal(node.getAttribute('role'), 'tabpanel');
   t.equal(node.getAttribute('aria-hidden'), 'false');
   t.equal(node.children.length, 1);
-  t.equal(node.firstChild.tagName, 'DIV');
+  t.equal(node.firstChild.tagName.toLowerCase(), 'div');
   t.equal(node.firstChild.innerHTML, 'hooha');
 
   t.end();
@@ -71,20 +74,20 @@ test('TabPanel that is not first to register, is not active', t => {
   const manager = mockManager();
   manager.tabPanels.push({ tabId: 'prior' });
   manager.activeTabId = 'prior';
-  const element = ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={manager}
-      tabId='foo'
-    >
-      bar
-    </TabPanel>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <TabPanel tabId='foo'>
+        bar
+      </TabPanel>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const element = ReactTestUtils.findRenderedComponentWithType(wrapper, TabPanel);
+  const node = ReactDOM.findDOMNode(element);
 
   t.deepEqual(manager.tabPanels, [{ tabId: 'prior' }, { element, tabId: 'foo' }]);
   t.equal(manager.activeTabId, 'prior');
 
-  t.equal(node.tagName, 'DIV');
+  t.equal(node.tagName.toLowerCase(), 'div');
   t.equal(node.getAttribute('id'), 'foo');
   t.equal(node.getAttribute('aria-hidden'), 'true');
   t.equal(node.children.innerHTML, undefined);
@@ -93,14 +96,14 @@ test('TabPanel that is not first to register, is not active', t => {
 });
 
 test('Active TabPanel with a function child', t => {
+  const manager = mockManager();
   const child = sinon.spy();
   ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={mockManager()}
-      tabId='foo'
-    >
-      {child}
-    </TabPanel>
+    <MockWrapper mockManager={manager}>
+      <TabPanel tabId='foo'>
+        {child}
+      </TabPanel>
+    </MockWrapper>
   );
 
   t.ok(child.calledOnce);
@@ -115,12 +118,11 @@ test('Inactive TabPanel with a function child', t => {
   manager.activeTabId = 'prior';
   const child = sinon.spy();
   ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={manager}
-      tabId='foo'
-    >
-      {child}
-    </TabPanel>
+    <MockWrapper mockManager={manager}>
+      <TabPanel tabId='foo'>
+        {child}
+      </TabPanel>
+    </MockWrapper>
   );
 
   t.ok(child.calledOnce);
@@ -141,15 +143,15 @@ test('TabPanel keydown', t => {
     preventDefault: sinon.spy(),
   };
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <TabPanel
-      manager={manager}
-      tabId='foo'
-    >
-      foo
-    </TabPanel>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <TabPanel tabId='foo'>
+        bar
+      </TabPanel>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const element = ReactTestUtils.findRenderedComponentWithType(wrapper, TabPanel);
+  const node = ReactDOM.findDOMNode(element);
 
   ReactTestUtils.Simulate.keyDown(node, upEvent);
   t.notOk(manager.moveFocusCurrent.called);

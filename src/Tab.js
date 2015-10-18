@@ -1,42 +1,44 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import keys from './keys';
 
 export default class Tab extends React.Component {
   componentWillMount() {
-    const { manager, tabId } = this.props;
-    this.managedIndex = manager.tabs.push({
+    const { tabId } = this.props;
+    const { atpManager } = this.context;
+    this.managedIndex = atpManager.tabs.push({
       tabId,
       element: this,
     }) - 1;
-    if (!manager.activeTabId && this.managedIndex === 0) {
-      manager.activeTabId = tabId;
-    } else if (manager.activeTabId === tabId) {
-      manager.currentTabIndex = this.managedIndex;
+    if (!atpManager.activeTabId && this.managedIndex === 0) {
+      atpManager.activeTabId = tabId;
+    } else if (atpManager.activeTabId === tabId) {
+      atpManager.currentTabIndex = this.managedIndex;
     }
   }
 
   componentDidMount() {
-    const { manager } = this.props;
-    manager.tabs[this.managedIndex].node = React.findDOMNode(this);
+    const { atpManager } = this.context;
+    atpManager.tabs[this.managedIndex].node = ReactDOM.findDOMNode(this);
   }
 
   handleClick() {
-    const { manager } = this.props;
-    manager.changeTab(this.managedIndex);
+    const { atpManager } = this.context;
+    atpManager.changeTab(this.managedIndex);
   }
 
   handleKeyDown(e) {
-    const { manager } = this.props;
+    const { atpManager } = this.context;
     switch (e.key) {
       case keys.LEFT:
       case keys.UP:
         e.preventDefault();
-        manager.changePrev();
+        atpManager.changePrev();
         break;
       case keys.RIGHT:
       case keys.DOWN:
         e.preventDefault();
-        manager.changeNext();
+        atpManager.changeNext();
         break;
       default:
     }
@@ -44,7 +46,7 @@ export default class Tab extends React.Component {
 
   render() {
     const props = this.props;
-    const isActive = props.manager.activeTabId === props.tabId;
+    const isActive = this.context.atpManager.activeTabId === props.tabId;
 
     const kids = (function() {
       if (typeof props.children === 'function') return props.children({ isActive });
@@ -69,7 +71,6 @@ Tab.propTypes = {
     PropTypes.func,
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
-  manager: PropTypes.object.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
   tag: PropTypes.string,
@@ -77,4 +78,8 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   tag: 'div',
+};
+
+Tab.contextTypes = {
+  atpManager: PropTypes.object.isRequired,
 };

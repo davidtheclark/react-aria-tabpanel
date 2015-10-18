@@ -3,26 +3,27 @@ import keys from './keys';
 
 export default class TabPanel extends React.Component {
   componentWillMount() {
-    const { manager, tabId } = this.props;
-    const managedIndex = manager.tabPanels.push({
+    const { tabId } = this.props;
+    const { atpManager } = this.context;
+    const managedIndex = atpManager.tabPanels.push({
       tabId,
       element: this,
     }) - 1;
-    if (!manager.activeTabId && managedIndex === 0) {
-      manager.activeTabId = tabId;
+    if (!atpManager.activeTabId && managedIndex === 0) {
+      atpManager.activeTabId = tabId;
     }
   }
 
   handleKeyDown(e) {
     if (e.ctrlKey && e.key === keys.UP) {
       e.preventDefault();
-      this.props.manager.moveFocusCurrent();
+      this.context.atpManager.moveFocusCurrent();
     }
   }
 
   render() {
     const props = this.props;
-    const isActive = props.manager.activeTabId === props.tabId;
+    const isActive = this.context.atpManager.activeTabId === props.tabId;
 
     const kids = (function() {
       if (typeof props.children === 'function') return props.children({ isActive });
@@ -46,11 +47,14 @@ TabPanel.propTypes = {
     PropTypes.func,
   ]).isRequired,
   tabId: PropTypes.string.isRequired,
-  manager: PropTypes.object.isRequired,
   className: PropTypes.string,
   tag: PropTypes.string,
 };
 
 TabPanel.defaultProps = {
   tag: 'div',
+};
+
+TabPanel.contextTypes = {
+  atpManager: PropTypes.object.isRequired,
 };

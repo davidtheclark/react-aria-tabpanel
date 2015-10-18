@@ -1,9 +1,10 @@
 import test from 'tape';
 import sinon from 'sinon';
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
+import MockWrapper from './MockWrapper';
 import Tab from '../src/Tab';
-
-const ReactTestUtils = React.addons.TestUtils;
 
 function mockManager() {
   return {
@@ -18,65 +19,68 @@ function mockManager() {
 
 test('Tab with only required props and a string child', t => {
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-    >
-      bar
-    </Tab>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        bar
+      </Tab>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
   t.deepEqual(manager.tabs, [{
-    element,
-    node,
+    element: tab,
+    node: tabNode,
     tabId: 'foo',
   }]);
   t.equal(manager.activeTabId, 'foo');
 
-  t.equal(node.tagName, 'DIV');
-  t.notOk(node.getAttribute('id'));
-  t.notOk(node.getAttribute('class'));
-  t.equal(node.getAttribute('tabindex'), '0');
-  t.equal(node.getAttribute('role'), 'tab');
-  t.equal(node.getAttribute('aria-controls'), 'foo');
-  t.equal(node.innerHTML, 'bar');
+  t.equal(tabNode.tagName.toLowerCase(), 'div');
+  t.notOk(tabNode.getAttribute('id'));
+  t.notOk(tabNode.getAttribute('class'));
+  t.equal(tabNode.getAttribute('tabindex'), '0');
+  t.equal(tabNode.getAttribute('role'), 'tab');
+  t.equal(tabNode.getAttribute('aria-controls'), 'foo');
+  t.equal(tabNode.innerHTML, 'bar');
 
   t.end();
 });
 
 test('Tab with all props and element child', t => {
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-      className='bar'
-      tag='li'
-      id='hooha'
-    >
-      <div>goat</div>
-    </Tab>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab
+        manager={manager}
+        tabId='foo'
+        className='bar'
+        tag='li'
+        id='hooha'
+      >
+        <div>goat</div>
+      </Tab>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
   t.deepEqual(manager.tabs, [{
-    element,
-    node,
+    element: tab,
+    node: tabNode,
     tabId: 'foo',
   }]);
   t.equal(manager.activeTabId, 'foo');
 
-  t.equal(node.tagName, 'LI');
-  t.equal(node.getAttribute('id'), 'hooha');
-  t.equal(node.getAttribute('class'), 'bar');
-  t.equal(node.getAttribute('tabindex'), '0');
-  t.equal(node.getAttribute('role'), 'tab');
-  t.equal(node.getAttribute('aria-controls'), 'foo');
-  t.equal(node.children.length, 1);
-  t.equal(node.firstChild.tagName, 'DIV');
-  t.equal(node.firstChild.innerHTML, 'goat');
+  t.equal(tabNode.tagName.toLowerCase(), 'li');
+  t.equal(tabNode.getAttribute('id'), 'hooha');
+  t.equal(tabNode.getAttribute('class'), 'bar');
+  t.equal(tabNode.getAttribute('tabindex'), '0');
+  t.equal(tabNode.getAttribute('role'), 'tab');
+  t.equal(tabNode.getAttribute('aria-controls'), 'foo');
+  t.equal(tabNode.children.length, 1);
+  t.equal(tabNode.firstChild.tagName.toLowerCase(), 'div');
+  t.equal(tabNode.firstChild.innerHTML, 'goat');
 
   t.end();
 });
@@ -85,30 +89,30 @@ test('Tab that is not first to register, is not active', t => {
   const manager = mockManager();
   manager.tabs.push({ tabId: 'prior' });
   manager.activeTabId = 'prior';
-  const element = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-    >
-      bar
-    </Tab>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        bar
+      </Tab>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
   t.deepEqual(manager.tabs, [{ tabId: 'prior' }, {
-    element,
-    node,
+    element: tab,
+    node: tabNode,
     tabId: 'foo',
   }]);
   t.equal(manager.activeTabId, 'prior');
 
-  t.equal(node.tagName, 'DIV');
-  t.notOk(node.getAttribute('id'));
-  t.notOk(node.getAttribute('class'));
-  t.equal(node.getAttribute('tabindex'), '-1');
-  t.equal(node.getAttribute('role'), 'tab');
-  t.equal(node.getAttribute('aria-controls'), 'foo');
-  t.equal(node.innerHTML, 'bar');
+  t.equal(tabNode.tagName.toLowerCase(), 'div');
+  t.notOk(tabNode.getAttribute('id'));
+  t.notOk(tabNode.getAttribute('class'));
+  t.equal(tabNode.getAttribute('tabindex'), '-1');
+  t.equal(tabNode.getAttribute('role'), 'tab');
+  t.equal(tabNode.getAttribute('aria-controls'), 'foo');
+  t.equal(tabNode.innerHTML, 'bar');
 
   t.end();
 });
@@ -117,12 +121,11 @@ test('Active Tab with a function child', t => {
   const manager = mockManager();
   const child = sinon.spy();
   ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-    >
-      {child}
-    </Tab>
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        {child}
+      </Tab>
+    </MockWrapper>
   );
 
   t.ok(child.calledOnce);
@@ -137,12 +140,11 @@ test('Inactive Tab with a function child', t => {
   manager.activeTabId = 'prior';
   const child = sinon.spy();
   ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-    >
-      {child}
-    </Tab>
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        {child}
+      </Tab>
+    </MockWrapper>
   );
 
   t.ok(child.calledOnce);
@@ -151,37 +153,41 @@ test('Inactive Tab with a function child', t => {
   t.end();
 });
 
-test('Tab click', t => {
-  const managerA = mockManager();
-  const elementA = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={managerA}
-      tabId='foo'
-    >
-      bar
-    </Tab>
+test('Tab click on first tab', t => {
+  const manager = mockManager();
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        bar
+      </Tab>
+    </MockWrapper>
   );
-  const nodeA = React.findDOMNode(elementA);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
-  ReactTestUtils.Simulate.click(nodeA);
-  t.ok(managerA.changeTab.calledOnce);
-  t.deepEqual(managerA.changeTab.getCall(0).args, [0]);
+  ReactTestUtils.Simulate.click(tabNode);
+  t.ok(manager.changeTab.calledOnce);
+  t.deepEqual(manager.changeTab.getCall(0).args, [0]);
 
-  const managerB = mockManager();
-  managerB.tabs.push({ tabId: 'prior' });
-  const elementB = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={managerB}
-      tabId='foo'
-    >
-      bar
-    </Tab>
+  t.end();
+});
+
+test('Tab click on second tab', t => {
+  const manager = mockManager();
+  manager.tabs.push({ tabId: 'prior' });
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        bar
+      </Tab>
+    </MockWrapper>
   );
-  const nodeB = React.findDOMNode(elementB);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
-  ReactTestUtils.Simulate.click(nodeB);
-  t.ok(managerB.changeTab.calledOnce);
-  t.deepEqual(managerB.changeTab.getCall(0).args, [1]);
+  ReactTestUtils.Simulate.click(tabNode);
+  t.ok(manager.changeTab.calledOnce);
+  t.deepEqual(manager.changeTab.getCall(0).args, [1]);
 
   t.end();
 });
@@ -208,37 +214,37 @@ test('Tab keydown', t => {
     preventDefault: sinon.spy(),
   };
   const manager = mockManager();
-  const element = ReactTestUtils.renderIntoDocument(
-    <Tab
-      manager={manager}
-      tabId='foo'
-    >
-      bar
-    </Tab>
+  const wrapper = ReactTestUtils.renderIntoDocument(
+    <MockWrapper mockManager={manager}>
+      <Tab tabId='foo'>
+        bar
+      </Tab>
+    </MockWrapper>
   );
-  const node = React.findDOMNode(element);
+  const tab = ReactTestUtils.findRenderedComponentWithType(wrapper, Tab);
+  const tabNode = ReactDOM.findDOMNode(tab);
 
-  ReactTestUtils.Simulate.keyDown(node, enterEvent);
+  ReactTestUtils.Simulate.keyDown(tabNode, enterEvent);
   t.notOk(enterEvent.preventDefault.called);
   t.notOk(manager.changePrev.called);
   t.notOk(manager.changeNext.called);
 
-  ReactTestUtils.Simulate.keyDown(node, leftEvent);
+  ReactTestUtils.Simulate.keyDown(tabNode, leftEvent);
   t.ok(leftEvent.preventDefault.called);
   t.ok(manager.changePrev.calledOnce);
   t.notOk(manager.changeNext.called);
 
-  ReactTestUtils.Simulate.keyDown(node, upEvent);
+  ReactTestUtils.Simulate.keyDown(tabNode, upEvent);
   t.ok(upEvent.preventDefault.called);
   t.ok(manager.changePrev.calledTwice);
   t.notOk(manager.changeNext.called);
 
-  ReactTestUtils.Simulate.keyDown(node, rightEvent);
+  ReactTestUtils.Simulate.keyDown(tabNode, rightEvent);
   t.ok(rightEvent.preventDefault.called);
   t.ok(manager.changePrev.calledTwice);
   t.ok(manager.changeNext.calledOnce);
 
-  ReactTestUtils.Simulate.keyDown(node, downEvent);
+  ReactTestUtils.Simulate.keyDown(tabNode, downEvent);
   t.ok(downEvent.preventDefault.called);
   t.ok(manager.changePrev.calledTwice);
   t.ok(manager.changeNext.calledTwice);

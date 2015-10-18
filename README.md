@@ -20,7 +20,11 @@ A React component that provides a style- and markup-agnostic foundation for full
 npm install react-aria-tabpanel
 ```
 
-One dependency: React 0.13x.
+### React Dependency
+
+Version 2+ is compatible with React 0.14.
+
+Version 1+ is compatible with React 0.13.
 
 ## Tested Browser Support
 
@@ -35,60 +39,31 @@ There are two ways to consume this module:
 - with CommonJS
 - as a global UMD library
 
-Using CommonJS, for example, you can simply `require()` the module to get the function `ariaTabPanel([options])`, like so:
+Using CommonJS, for example, you can simply `require()` the module to get the object AriaTabPanel, which contains all the components you'll need:
 
 ```js
-var ariaTabPanel = require('react-aria-tabpanel');
+var AriaTabPanel = require('react-aria-tabpanel');
 
-var myAmt = ariaTabPanel();
+// Now use AriaTabPanel.Wrapper, AriaTabPanel.TabList,
+// AriaTabPanel.Tab, and AriaTabPanel.TabPanel ...
 ```
 
 Using globals/UMD, you must do the following:
 
-- Expose React globally
+- Expose React and ReactDOM globally
 - Use one of the builds in the `dist/` directory
 
 ```html
 <script src="react.min.js"></script>
-<script src="node_modules/react-aria-menu-button/dist/ariaTabPanel.min.js"></script>
+<script src="react-dom.min.js"></script>
+<script src="node_modules/react-aria-menu-button/dist/AriaTabPanel.min.js"></script>
 <script>
-  var myAmt = ariaTabPanel();
+  // Now use AriaTabPanel.Wrapper, AriaTabPanel.TabList,
+  // AriaTabPanel.Tab, and AriaTabPanel.TabPanel ...
 </script>
 ```
 
-**You *get to* (have to) write your own CSS, your own way.**
-
-### ariaTabPanel([options])
-
-Returns an object with three components: `Tab`, `TabList`, and `TabPanel`. Each of these is documented below.
-
-```js
-var myAmt = ariaTabPanel();
-var MyAmtTab = myAmt.Tab;
-var MyAmtTabList = myAmt.TabList;
-var MyAmtTabPanel = myAmt.TabPanel;
-```
-
-#### options
-
-All options are optional.
-
-##### onChange
-
-Type: `Function`
-
-A callback to run when the user changes tabs (i.e. clicks a tab or navigates to another with the arrow keys). It will be passed the the newly activated tab's ID.
-
-By default, the tabs maintain state internally. *Use this prop to make the tabs "stateless," and take control yourself.* You can run any arbitrary code when the user performs an action that indicates a tab change (e.g. change your route and update a store, etc.).
-
-##### activeTabId
-
-Type: `String`
-
-Directly tell the tabs which one is active. By default, the first tab provided will be the initially active tab, and from then on the active tab state is managed internally. This prop, then, can be used two ways:
-
-- to give the tabs an initial active tab other than the first, or
-- if you have seized control of the state (via an `onChange` function), to continuously tell the tabs which one is active.
+**You *get to* (have to) write your own CSS, your own way, based on your own components.**
 
 ## Examples
 
@@ -96,19 +71,14 @@ The code below is from the examples in `demo/`.
 
 ```js
 import React from 'react';
-import ariaTabPanel from 'react-aria-tabpanel';
+import { Wrapper, TabList, Tab, TabPanel } from 'react-aria-tabpanel';
 
 // This demo lets the tabs manage their own state
 
 class StatefulDemo extends React.Component {
-  componentWillMount() {
-    this.ariaTabPanel = ariaTabPanel();
-  }
-
   render() {
-    const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     return (
-      <div>
+      <Wrapper>
         <TabList>
           <ul className='Tabs-tablist'>
             <li className='Tabs-tablistItem'>
@@ -139,7 +109,7 @@ class StatefulDemo extends React.Component {
             Duis <a href='#'>aute</a> irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </TabPanel>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }
@@ -147,7 +117,7 @@ class StatefulDemo extends React.Component {
 
 ```js
 import React from 'react';
-import ariaTabPanel from 'react-aria-tabpanel';
+import AriaTabPanel from 'react-aria-tabpanel';
 
 // In this demo, the wrapping component manages the tabs' state
 
@@ -187,19 +157,11 @@ class StatelessDemo extends React.Component {
     this.state = { activeTab: '2' };
   }
 
-  componentWillMount() {
-    this.ariaTabPanel = ariaTabPanel({
-      onChange: this.setTab.bind(this),
-      activeTabId: '2',
-    });
-  }
-
   setTab(newActiveTabId) {
     this.setState({ activeTab: newActiveTabId });
   }
 
   render() {
-    const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     const { activeTab } = this.state;
 
     const tabs = tabData.map((t, i) => {
@@ -207,40 +169,79 @@ class StatelessDemo extends React.Component {
       if (t.id === activeTab) innerCl += ' is-active';
       return (
         <li className='Tabs-tablistItem' key={i}>
-          <Tab tabId={t.id} className='Tabs-tab'>
+          <AriaTabPanel.Tab tabId={t.id} className='Tabs-tab'>
             <div className={innerCl}>
               {t.title}
             </div>
-          </Tab>
+          </AriaTabPanel.Tab>
         </li>
       );
     });
 
     const panels = tabData.map((p, i) => {
       return (
-        <TabPanel tabId={p.id} key={i}>
+        <AriaTabPanel.TabPanel tabId={p.id} key={i}>
           {p.content}
-        </TabPanel>
+        </AriaTabPanel.TabPanel>
       );
     });
 
     return (
-      <div>
-        <TabList>
+      <AriaTabPanel.Wrapper
+        onChange={this.setTab.bind(this)}
+        activeTabId='2'
+      >
+        <AriaTabPanel.TabList>
           <ul className='Tabs-tablist'>
             {tabs}
           </ul>
-        </TabList>
+        </AriaTabPanel.TabList>
         <div className='Tabs-panel'>
           {panels}
         </div>
-      </div>
+      </AriaTabPanel.Wrapper>
     );
   }
 }
 ```
 
-## Component API
+## AriaTabPanel API
+
+The AriaTabPanel object exposes four components: `Wrapper`, `TabList`, `Tab`, and `TabPanel`. Each of these is documented below.
+
+**`TabList`, `Tab`, and `TabPanel` must always be wrapped in a `Wrapper`.**
+
+```
+
+### Wrapper
+
+A simple component to group a `TabList`/`Tab`/`TabPanel` set, coordinating their interactions.
+*It should wrap your entire tab panel widget.*
+
+All `TabList`, `Tab`, and `TabPanel` components *must* be nested within a `Wrapper` component.
+
+Each wrapper should contain *only one* `TabList`, *multiple* `Tab`s, and *multiple* `TabPanel`s.
+
+#### options
+
+All options are optional.
+
+##### onChange
+
+Type: `Function`
+
+A callback to run when the user changes tabs (i.e. clicks a tab or navigates to another with the arrow keys). It will be passed the the newly activated tab's ID.
+
+By default, the tabs maintain state internally. *Use this prop to make the tabs "stateless," and take control yourself.* You can run any arbitrary code when the user performs an action that indicates a tab change (e.g. change your route and update a store, etc.).
+
+##### activeTabId
+
+Type: `String`
+
+Directly tell the tabs which one is active. By default, the first tab provided will be the initially active tab, and from then on the active tab state is managed internally. This prop, then, can be used two ways:
+
+- to give the tabs an initial active tab other than the first, or
+- if you have seized control of the state (via an `onChange` function), to continuously tell the tabs which one is active.
 
 ### `TabList`
 

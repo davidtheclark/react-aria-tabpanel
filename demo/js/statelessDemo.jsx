@@ -1,5 +1,6 @@
 import React from 'react';
-import ariaTabPanel from '../../src/ariaTabPanel';
+import ReactDOM from 'react-dom';
+import { Wrapper, Tab, TabList, TabPanel} from '../../src';
 
 const tabData = [
   {
@@ -37,19 +38,11 @@ class StatelessDemo extends React.Component {
     this.state = { activeTab: '2' };
   }
 
-  componentWillMount() {
-    this.ariaTabPanel = ariaTabPanel({
-      onChange: this.setTab.bind(this),
-      activeTabId: '2',
-    });
-  }
-
   setTab(newActiveTabId) {
     this.setState({ activeTab: newActiveTabId });
   }
 
   render() {
-    const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     const { activeTab } = this.state;
 
     const tabs = tabData.map((t, i) => {
@@ -75,7 +68,10 @@ class StatelessDemo extends React.Component {
     });
 
     return (
-      <div>
+      <Wrapper
+        onChange={this.setTab.bind(this)}
+        activeTabId='2'
+      >
         <TabList>
           <ul className='Tabs-tablist'>
             {tabs}
@@ -84,12 +80,12 @@ class StatelessDemo extends React.Component {
         <div className='Tabs-panel'>
           {panels}
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }
 
-React.render(
+ReactDOM.render(
   <StatelessDemo />,
   document.getElementById('stateless-demo')
 );

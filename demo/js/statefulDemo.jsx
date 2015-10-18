@@ -1,15 +1,11 @@
 import React from 'react';
-import ariaTabPanel from '../../src/ariaTabPanel';
+import ReactDOM from 'react-dom';
+import { Wrapper, Tab, TabList, TabPanel} from '../../src';
 
 class StatefulDemo extends React.Component {
-  componentWillMount() {
-    this.ariaTabPanel = ariaTabPanel();
-  }
-
   render() {
-    const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     return (
-      <div>
+      <Wrapper>
         <TabList>
           <ul className='Tabs-tablist'>
             <li className='Tabs-tablistItem'>
@@ -40,12 +36,12 @@ class StatefulDemo extends React.Component {
             Duis <a href='#'>aute</a> irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </TabPanel>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }
 
-React.render(
+ReactDOM.render(
   <StatefulDemo />,
   document.getElementById('stateful-demo')
 );

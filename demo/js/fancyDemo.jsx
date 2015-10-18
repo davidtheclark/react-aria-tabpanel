@@ -1,17 +1,11 @@
-import React from 'react/addons';
-import ariaTabPanel from '../../src/ariaTabPanel';
-
-const { CSSTransitionGroup } = React.addons;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Wrapper, Tab, TabList, TabPanel} from '../../src';
 
 class FancyDemo extends React.Component {
-  componentWillMount() {
-    this.ariaTabPanel = ariaTabPanel();
-  }
-
   render() {
-    const { Tab, TabList, TabPanel } = this.ariaTabPanel;
     return (
-      <div>
+      <Wrapper>
         <TabList>
           <ul className='FancyTabs-tablist'>
             <li className='FancyTabs-tablistItem'>
@@ -69,12 +63,12 @@ class FancyDemo extends React.Component {
             </div>
           </TabPanel>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }
 
-React.render(
+ReactDOM.render(
   <FancyDemo />,
   document.getElementById('fancy-demo')
 );

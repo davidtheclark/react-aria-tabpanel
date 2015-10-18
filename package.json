@@ -4,18 +4,18 @@
   "description": "A style- and markup-agnostic, React-powered Tab Panel component that fulfills the WAI-ARIA Design Pattern",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint .",
-    "minify": "uglifyjs ./dist/ariaTabPanel.js -c -m -o ./dist/ariaTabPanel.min.js",
     "demo-bundle": "browserify demo/js/demo.js -t babelify --extension=.jsx -o demo/demo-bundle.js",
     "demo-watch": "watchify demo/js/demo.js -t babelify -d --extension=.jsx -o demo/demo-bundle.js -v",
     "demo-bs": "browser-sync start --server demo --files=\"demo/**/*.css,demo/index.html,demo/demo-bundle.js\"",
     "demo-dev": "parallelshell \"npm run demo-watch\" \"npm run demo-bs\"",
-    "test-dev": "zuul --local 8080 -- test",
+    "test-dev": "zuul --local 8080 --open -- test",
+    "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "zuul -- test",
-    "prebuild-bundle": "trash dist/* --force",
-    "build-bundle": " browserify src/ariaTabPanel.jsx -p bundle-collapser/plugin -x react -t [ babelify --loose ] --standalone ariaTabPanel -o dist/ariaTabPanel.js",
-    "prebuild-modules": "trash dist-modules/* --force",
+    "minify": "uglifyjs ./dist/AriaTabPanel.js -c -m -o ./dist/AriaTabPanel.min.js",
+    "prebuild-bundle": "rimraf dist",
+    "build-bundle": " browserify src -p bundle-collapser/plugin -x react -x react-dom -t [ babelify --loose ] --standalone AriaTabPanel -o dist/AriaTabPanel.js",
+    "prebuild-modules": "rimraf dist-modules",
     "build-modules": "babel src --loose --out-dir dist-modules",
     "build": "npm run build-bundle && parallelshell \"npm run build-modules\" \"npm run minify\"",
     "prepublish": "npm run build"
@@ -45,22 +45,24 @@
     "widget"
   ],
   "dependencies": {
-    "react": "0.13.x"
+    "react": "0.14.x",
+    "react-dom": "0.14.x"
   },
   "devDependencies": {
-    "babel": "5.8.21",
-    "babelify": "6.2.0",
-    "browser-sync": "2.8.2",
-    "browserify": "11.0.1",
+    "babel": "5.8.23",
+    "babelify": "6.3.0",
+    "browser-sync": "2.9.11",
+    "browserify": "11.2.0",
     "bundle-collapser": "1.2.1",
-    "eslint": "1.2.1",
-    "eslint-plugin-react": "3.3.0",
+    "eslint": "1.7.1",
+    "eslint-plugin-react": "3.5.1",
     "parallelshell": "2.0.0",
-    "sinon": "1.16.1",
-    "tape": "4.2.0",
-    "trash": "2.0.0",
-    "uglify-js": "2.4.24",
-    "watchify": "3.3.1",
-    "zuul": "3.4.0"
+    "react-addons-test-utils": "0.14.0",
+    "rimraf": "2.4.3",
+    "sinon": "1.17.1",
+    "tape": "4.2.1",
+    "uglify-js": "2.5.0",
+    "watchify": "3.4.0",
+    "zuul": "3.6.0"
   }
 }

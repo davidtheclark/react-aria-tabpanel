@@ -219,8 +219,6 @@ The AriaTabPanel object exposes four components: `Wrapper`, `TabList`, `Tab`, an
 
 **`TabList`, `Tab`, and `TabPanel` must always be wrapped in a `Wrapper`.**
 
-```
-
 ### Wrapper
 
 A simple component to group a `TabList`/`Tab`/`TabPanel` set, coordinating their interactions.

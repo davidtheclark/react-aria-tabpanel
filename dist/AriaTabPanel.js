@@ -311,7 +311,7 @@ var TabPanel = (function (_React$Component) {
 
     return _react2['default'].createElement(props.tag, {
       className: props.className,
-      id: props.tabId,
+      id: props.id,
       onKeyDown: this.handleKeyDown.bind(this),
       role: 'tabpanel',
       style: props.style,
@@ -328,6 +328,7 @@ TabPanel.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  id: _react.PropTypes.string,
   style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };

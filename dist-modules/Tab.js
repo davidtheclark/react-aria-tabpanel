@@ -86,6 +86,7 @@ var Tab = (function (_React$Component) {
     return _react2['default'].createElement(props.tag, {
       className: props.className,
       id: props.id,
+      style: props.style,
       tabIndex: isActive ? '0' : '-1',
       onClick: this.handleClick.bind(this),
       onKeyDown: this.handleKeyDown.bind(this),
@@ -103,6 +104,7 @@ Tab.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   id: _react.PropTypes.string,
   tag: _react.PropTypes.string
 };

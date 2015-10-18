@@ -60,6 +60,7 @@ var TabPanel = (function (_React$Component) {
       id: props.tabId,
       onKeyDown: this.handleKeyDown.bind(this),
       role: 'tabpanel',
+      style: props.style,
       'aria-hidden': !isActive
     }, kids);
   };
@@ -73,6 +74,7 @@ TabPanel.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };
 

@@ -27,10 +27,12 @@ var TabList = (function (_React$Component) {
     var children = _props.children;
     var className = _props.className;
     var id = _props.id;
+    var style = _props.style;
 
     return _react2['default'].createElement(tag, {
       className: className,
       id: id,
+      style: style,
       role: 'tablist'
     }, children);
   };
@@ -44,6 +46,7 @@ TabList.propTypes = {
   children: _react.PropTypes.node.isRequired,
   className: _react.PropTypes.string,
   id: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };
 

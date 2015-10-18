@@ -161,6 +161,7 @@ var Tab = (function (_React$Component) {
     return _react2['default'].createElement(props.tag, {
       className: props.className,
       id: props.id,
+      style: props.style,
       tabIndex: isActive ? '0' : '-1',
       onClick: this.handleClick.bind(this),
       onKeyDown: this.handleKeyDown.bind(this),
@@ -178,6 +179,7 @@ Tab.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   id: _react.PropTypes.string,
   tag: _react.PropTypes.string
 };
@@ -221,10 +223,12 @@ var TabList = (function (_React$Component) {
     var children = _props.children;
     var className = _props.className;
     var id = _props.id;
+    var style = _props.style;
 
     return _react2['default'].createElement(tag, {
       className: className,
       id: id,
+      style: style,
       role: 'tablist'
     }, children);
   };
@@ -238,6 +242,7 @@ TabList.propTypes = {
   children: _react.PropTypes.node.isRequired,
   className: _react.PropTypes.string,
   id: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };
 
@@ -309,6 +314,7 @@ var TabPanel = (function (_React$Component) {
       id: props.tabId,
       onKeyDown: this.handleKeyDown.bind(this),
       role: 'tabpanel',
+      style: props.style,
       'aria-hidden': !isActive
     }, kids);
   };
@@ -322,6 +328,7 @@ TabPanel.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };
 

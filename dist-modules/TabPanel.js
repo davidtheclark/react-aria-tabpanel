@@ -26,29 +26,28 @@ var TabPanel = (function (_React$Component) {
   }
 
   TabPanel.prototype.componentWillMount = function componentWillMount() {
-    var _props = this.props;
-    var manager = _props.manager;
-    var tabId = _props.tabId;
+    var tabId = this.props.tabId;
+    var atpManager = this.context.atpManager;
 
-    var managedIndex = manager.tabPanels.push({
+    var managedIndex = atpManager.tabPanels.push({
       tabId: tabId,
       element: this
     }) - 1;
-    if (!manager.activeTabId && managedIndex === 0) {
-      manager.activeTabId = tabId;
+    if (!atpManager.activeTabId && managedIndex === 0) {
+      atpManager.activeTabId = tabId;
     }
   };
 
   TabPanel.prototype.handleKeyDown = function handleKeyDown(e) {
     if (e.ctrlKey && e.key === _keys2['default'].UP) {
       e.preventDefault();
-      this.props.manager.moveFocusCurrent();
+      this.context.atpManager.moveFocusCurrent();
     }
   };
 
   TabPanel.prototype.render = function render() {
     var props = this.props;
-    var isActive = props.manager.activeTabId === props.tabId;
+    var isActive = this.context.atpManager.activeTabId === props.tabId;
 
     var kids = (function () {
       if (typeof props.children === 'function') return props.children({ isActive: isActive });
@@ -71,14 +70,17 @@ var TabPanel = (function (_React$Component) {
 exports['default'] = TabPanel;
 
 TabPanel.propTypes = {
-  children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.arrayOf(_react.PropTypes.element), _react.PropTypes['function'], _react.PropTypes.string]).isRequired,
+  children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
-  manager: _react.PropTypes.object.isRequired,
   className: _react.PropTypes.string,
   tag: _react.PropTypes.string
 };
 
 TabPanel.defaultProps = {
   tag: 'div'
+};
+
+TabPanel.contextTypes = {
+  atpManager: _react.PropTypes.object.isRequired
 };
 module.exports = exports['default'];

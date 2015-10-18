@@ -12,6 +12,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _keys = require('./keys');
 
 var _keys2 = _interopRequireDefault(_keys);
@@ -26,46 +30,45 @@ var Tab = (function (_React$Component) {
   }
 
   Tab.prototype.componentWillMount = function componentWillMount() {
-    var _props = this.props;
-    var manager = _props.manager;
-    var tabId = _props.tabId;
+    var tabId = this.props.tabId;
+    var atpManager = this.context.atpManager;
 
-    this.managedIndex = manager.tabs.push({
+    this.managedIndex = atpManager.tabs.push({
       tabId: tabId,
       element: this
     }) - 1;
-    if (!manager.activeTabId && this.managedIndex === 0) {
-      manager.activeTabId = tabId;
-    } else if (manager.activeTabId === tabId) {
-      manager.currentTabIndex = this.managedIndex;
+    if (!atpManager.activeTabId && this.managedIndex === 0) {
+      atpManager.activeTabId = tabId;
+    } else if (atpManager.activeTabId === tabId) {
+      atpManager.currentTabIndex = this.managedIndex;
     }
   };
 
   Tab.prototype.componentDidMount = function componentDidMount() {
-    var manager = this.props.manager;
+    var atpManager = this.context.atpManager;
 
-    manager.tabs[this.managedIndex].node = _react2['default'].findDOMNode(this);
+    atpManager.tabs[this.managedIndex].node = _reactDom2['default'].findDOMNode(this);
   };
 
   Tab.prototype.handleClick = function handleClick() {
-    var manager = this.props.manager;
+    var atpManager = this.context.atpManager;
 
-    manager.changeTab(this.managedIndex);
+    atpManager.changeTab(this.managedIndex);
   };
 
   Tab.prototype.handleKeyDown = function handleKeyDown(e) {
-    var manager = this.props.manager;
+    var atpManager = this.context.atpManager;
 
     switch (e.key) {
       case _keys2['default'].LEFT:
       case _keys2['default'].UP:
         e.preventDefault();
-        manager.changePrev();
+        atpManager.changePrev();
         break;
       case _keys2['default'].RIGHT:
       case _keys2['default'].DOWN:
         e.preventDefault();
-        manager.changeNext();
+        atpManager.changeNext();
         break;
       default:
     }
@@ -73,7 +76,7 @@ var Tab = (function (_React$Component) {
 
   Tab.prototype.render = function render() {
     var props = this.props;
-    var isActive = props.manager.activeTabId === props.tabId;
+    var isActive = this.context.atpManager.activeTabId === props.tabId;
 
     var kids = (function () {
       if (typeof props.children === 'function') return props.children({ isActive: isActive });
@@ -97,9 +100,8 @@ var Tab = (function (_React$Component) {
 exports['default'] = Tab;
 
 Tab.propTypes = {
-  children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.arrayOf(_react.PropTypes.element), _react.PropTypes.func, _react.PropTypes.string]).isRequired,
+  children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
-  manager: _react.PropTypes.object.isRequired,
   className: _react.PropTypes.string,
   id: _react.PropTypes.string,
   tag: _react.PropTypes.string
@@ -107,5 +109,9 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   tag: 'div'
+};
+
+Tab.contextTypes = {
+  atpManager: _react.PropTypes.object.isRequired
 };
 module.exports = exports['default'];

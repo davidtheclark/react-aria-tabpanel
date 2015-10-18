@@ -12,42 +12,66 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var TabList = (function (_React$Component) {
-  _inherits(TabList, _React$Component);
+var _Manager = require('./Manager');
 
-  function TabList() {
-    _classCallCheck(this, TabList);
+var _Manager2 = _interopRequireDefault(_Manager);
+
+var Wrapper = (function (_React$Component) {
+  _inherits(Wrapper, _React$Component);
+
+  function Wrapper() {
+    _classCallCheck(this, Wrapper);
 
     _React$Component.apply(this, arguments);
   }
 
-  TabList.prototype.render = function render() {
-    var _props = this.props;
-    var tag = _props.tag;
-    var children = _props.children;
-    var className = _props.className;
-    var id = _props.id;
-
-    return _react2['default'].createElement(tag, {
-      className: className,
-      id: id,
-      role: 'tablist'
-    }, children);
+  Wrapper.prototype.componentWillMount = function componentWillMount() {
+    this.manager = new _Manager2['default']({
+      onChange: this.props.onChange,
+      activeTabId: this.props.activeTabId
+    });
   };
 
-  return TabList;
+  Wrapper.prototype.getChildContext = function getChildContext() {
+    return {
+      atpManager: this.manager
+    };
+  };
+
+  Wrapper.prototype.render = function render() {
+    var _props = this.props;
+    var tag = _props.tag;
+    var id = _props.id;
+    var className = _props.className;
+    var style = _props.style;
+
+    return _react2['default'].createElement(tag, {
+      id: id,
+      className: className,
+      style: style
+    }, this.props.children);
+  };
+
+  return Wrapper;
 })(_react2['default'].Component);
 
-exports['default'] = TabList;
+exports['default'] = Wrapper;
 
-TabList.propTypes = {
+Wrapper.childContextTypes = {
+  atpManager: _react.PropTypes.object.isRequired
+};
+
+Wrapper.propTypes = {
   children: _react.PropTypes.node.isRequired,
-  className: _react.PropTypes.string,
+  activeTabId: _react.PropTypes.string,
   id: _react.PropTypes.string,
+  className: _react.PropTypes.string,
+  onChange: _react.PropTypes.func,
+  style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };
 
-TabList.defaultProps = {
+Wrapper.defaultProps = {
   tag: 'div'
 };
 module.exports = exports['default'];

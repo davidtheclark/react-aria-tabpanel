@@ -1,5 +1,8 @@
 # Changelog
 
+## Head
+- Fix bug in `index.js`.
+
 ## 3.0.0
 - Add `id` prop to `TabPanel`, and use it for the DOM node's id attribute (rather than `tabId`).
   Intended to push this with 2.0.0, as it is a slight but breaking change.

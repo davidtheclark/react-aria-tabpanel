@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 3.0.1
 - Fix bug in `index.js`.
 
 ## 3.0.0

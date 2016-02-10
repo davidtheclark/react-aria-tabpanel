@@ -61,6 +61,7 @@ export default class Tab extends React.Component {
       onClick: this.handleClick.bind(this),
       onKeyDown: this.handleKeyDown.bind(this),
       role: 'tab',
+      'aria-selected': isActive,
       'aria-controls': props.tabId,
     }, kids);
   }

@@ -4,11 +4,13 @@ A React component that helps you build *accessible* tabs, by providing keyboard 
 
 Please check out [the demo](http://davidtheclark.github.io/react-aria-tabpanel/demo/)
 
-## Upgrading from 1.x.x to 2.x.x
+## Upgrading from 1.x.x to 2.x.x and 3.x.x
 
 There are two big differences between these releases:
 - 2.x.x depends on React 0.14 (and its new counterpart ReactDOM)
 - In 2.x.x, you do not need to use the `ariaTabPanel()` factory function to create a set of components. Instead, you make sure to wrap the `TabList`, `Tab`, and `TabPanel` components in a `Wrapper` component: that `Wrapper` will group them and organize the interactions (via [React's `context` API](https://facebook.github.io/react/docs/context.html)). The documentation below explains this new way of doing things.
+
+3.x.x just adds the `id` prop to `TabPanel` -- which I intended to release with 2 but forgot stupidly.
 
 Please file an issue if anything is unclear or doesn't work as expected.
 
@@ -30,7 +32,7 @@ npm install react-aria-tabpanel
 
 ### React Dependency
 
-Version 2+ is compatible with React 0.14.
+Version 2/3+ is compatible with React 0.14.
 
 Version 1+ is compatible with React 0.13.
 
@@ -219,8 +221,6 @@ The AriaTabPanel object exposes four components: `Wrapper`, `TabList`, `Tab`, an
 
 **`TabList`, `Tab`, and `TabPanel` must always be wrapped in a `Wrapper`.**
 
-```
-
 ### Wrapper
 
 A simple component to group a `TabList`/`Tab`/`TabPanel` set, coordinating their interactions.
@@ -328,7 +328,13 @@ A `Tab`'s children may be any of the following:
 
 #### props
 
-All props are optional.
+All props are optional except `tabId`.
+
+##### tabId
+
+Type: `String` **required**
+
+The id string that ties this `Tab` to its `TabPanel`: so there must be a `TabPanel` component with a matching `tabId`.
 
 ##### tag
 
@@ -371,7 +377,13 @@ A `TabPanels`'s children may be any of the following:
 
 #### props
 
-All props are optional.
+All props are optional except `tabId`.
+
+##### tabId
+
+Type: `String` **required**
+
+The id string that ties this `TabPanel` to its `Tab`: so there must be a `Tab` component with a matching `tabId`.
 
 ##### tag
 
@@ -379,17 +391,17 @@ Type: `String` Default: `'div'`
 
 The HTML tag for this element.
 
-##### id
-
-Type: `String`
-
-An id value.
-
 ##### className
 
 Type: `String`
 
 A class value.
+
+##### id
+
+Type: `String`
+
+An id value.
 
 ##### style
 

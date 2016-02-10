@@ -9,30 +9,30 @@ class StatefulDemo extends React.Component {
         <TabList>
           <ul className='Tabs-tablist'>
             <li className='Tabs-tablistItem'>
-              <Tab tabId='1' className='Tabs-tab'>
+              <Tab tabId='t1' className='Tabs-tab'>
                 {demoTab.bind(null, 'one')}
               </Tab>
             </li>
             <li className='Tabs-tablistItem'>
-              <Tab tabId='2' className='Tabs-tab'>
+              <Tab tabId='t2' className='Tabs-tab'>
                 {demoTab.bind(null, 'two')}
               </Tab>
             </li>
             <li className='Tabs-tablistItem'>
-              <Tab tabId='3' className='Tabs-tab'>
+              <Tab tabId='t3' className='Tabs-tab'>
                 {demoTab.bind(null, 'three')}
               </Tab>
             </li>
           </ul>
         </TabList>
         <div className='Tabs-panel'>
-          <TabPanel tabId='1'>
+          <TabPanel tabId='t1'>
             Lorem <a href='#'>ipsum</a> dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </TabPanel>
-          <TabPanel tabId='2'>
+          <TabPanel tabId='t2'>
             Ut <a href='#'>enim</a> ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </TabPanel>
-          <TabPanel tabId='3'>
+          <TabPanel tabId='t3'>
             Duis <a href='#'>aute</a> irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </TabPanel>
         </div>

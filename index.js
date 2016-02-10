@@ -1,1 +1,1 @@
-module.exports = require('./dist-modules/ariaTabPanel.js');
+module.exports = require('./dist-modules');

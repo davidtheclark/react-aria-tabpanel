@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.2
+## 3.0.3
 - Add `aria-selected` property to active tab.
 
 ## 3.0.1

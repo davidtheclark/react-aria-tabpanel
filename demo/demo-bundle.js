@@ -56,7 +56,7 @@ var FancyDemo = (function (_React$Component) {
               { className: 'FancyTabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '1', className: 'FancyTabs-tab' },
+                { tabId: 't1', className: 'FancyTabs-tab' },
                 demoTab.bind(null, _react2['default'].createElement(
                   'div',
                   null,
@@ -74,7 +74,7 @@ var FancyDemo = (function (_React$Component) {
               { className: 'FancyTabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '2', className: 'FancyTabs-tab' },
+                { tabId: 't2', className: 'FancyTabs-tab' },
                 demoTab.bind(null, _react2['default'].createElement(
                   'div',
                   null,
@@ -92,7 +92,7 @@ var FancyDemo = (function (_React$Component) {
               { className: 'FancyTabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '3', className: 'FancyTabs-tab' },
+                { tabId: 't3', className: 'FancyTabs-tab' },
                 demoTab.bind(null, _react2['default'].createElement(
                   'div',
                   null,
@@ -112,7 +112,7 @@ var FancyDemo = (function (_React$Component) {
           { className: 'FancyTabs-panel' },
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '1' },
+            { tabId: 't1' },
             _react2['default'].createElement(
               'div',
               { className: 'FancyTabs-panelInner' },
@@ -127,7 +127,7 @@ var FancyDemo = (function (_React$Component) {
           ),
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '2' },
+            { tabId: 't2' },
             _react2['default'].createElement(
               'div',
               { className: 'FancyTabs-panelInner' },
@@ -142,7 +142,7 @@ var FancyDemo = (function (_React$Component) {
           ),
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '3' },
+            { tabId: 't3' },
             _react2['default'].createElement(
               'div',
               { className: 'FancyTabs-panelInner' },
@@ -224,7 +224,7 @@ var StatefulDemo = (function (_React$Component) {
               { className: 'Tabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '1', className: 'Tabs-tab' },
+                { tabId: 't1', className: 'Tabs-tab' },
                 demoTab.bind(null, 'one')
               )
             ),
@@ -233,7 +233,7 @@ var StatefulDemo = (function (_React$Component) {
               { className: 'Tabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '2', className: 'Tabs-tab' },
+                { tabId: 't2', className: 'Tabs-tab' },
                 demoTab.bind(null, 'two')
               )
             ),
@@ -242,7 +242,7 @@ var StatefulDemo = (function (_React$Component) {
               { className: 'Tabs-tablistItem' },
               _react2['default'].createElement(
                 _src.Tab,
-                { tabId: '3', className: 'Tabs-tab' },
+                { tabId: 't3', className: 'Tabs-tab' },
                 demoTab.bind(null, 'three')
               )
             )
@@ -253,7 +253,7 @@ var StatefulDemo = (function (_React$Component) {
           { className: 'Tabs-panel' },
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '1' },
+            { tabId: 't1' },
             'Lorem ',
             _react2['default'].createElement(
               'a',
@@ -264,7 +264,7 @@ var StatefulDemo = (function (_React$Component) {
           ),
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '2' },
+            { tabId: 't2' },
             'Ut ',
             _react2['default'].createElement(
               'a',
@@ -275,7 +275,7 @@ var StatefulDemo = (function (_React$Component) {
           ),
           _react2['default'].createElement(
             _src.TabPanel,
-            { tabId: '3' },
+            { tabId: 't3' },
             'Duis ',
             _react2['default'].createElement(
               'a',
@@ -329,7 +329,7 @@ var _src = require('../../src');
 
 var tabData = [{
   title: 'one',
-  id: '1',
+  id: 't1',
   content: _react2['default'].createElement(
     'div',
     null,
@@ -343,7 +343,7 @@ var tabData = [{
   )
 }, {
   title: 'two',
-  id: '2',
+  id: 't2',
   content: _react2['default'].createElement(
     'div',
     null,
@@ -357,7 +357,7 @@ var tabData = [{
   )
 }, {
   title: 'three',
-  id: '3',
+  id: 't3',
   content: _react2['default'].createElement(
     'div',
     null,
@@ -19618,6 +19618,7 @@ var Tab = (function (_React$Component) {
         onClick: this.handleClick.bind(this),
         onKeyDown: this.handleKeyDown.bind(this),
         role: 'tab',
+        'aria-selected': isActive,
         'aria-controls': props.tabId
       }, kids);
     }
@@ -19783,7 +19784,7 @@ var TabPanel = (function (_React$Component) {
 
       return _react2['default'].createElement(props.tag, {
         className: props.className,
-        id: props.tabId,
+        id: props.id,
         onKeyDown: this.handleKeyDown.bind(this),
         role: 'tabpanel',
         style: props.style,
@@ -19801,6 +19802,7 @@ TabPanel.propTypes = {
   children: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.func]).isRequired,
   tabId: _react.PropTypes.string.isRequired,
   className: _react.PropTypes.string,
+  id: _react.PropTypes.string,
   style: _react.PropTypes.object,
   tag: _react.PropTypes.string
 };

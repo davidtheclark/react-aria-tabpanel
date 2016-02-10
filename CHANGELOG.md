@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.2
+- Add `aria-selected` property to active tab.
+
 ## 3.0.1
 - Fix bug in `index.js`.
 

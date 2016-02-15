@@ -1,5 +1,5 @@
 node_modules
-spec
 **/*-bundle.js
 **/*-bundle.min.js
 *.log
+umd

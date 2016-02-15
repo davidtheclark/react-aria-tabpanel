@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Wrapper, Tab, TabList, TabPanel} from '../../src';
+import AriaTabPanel from '../..';
 
-const tabData = [
+const tabDescriptions = [
   {
     title: 'one',
     id: 't1',
@@ -35,7 +35,7 @@ const tabData = [
 class StatelessDemo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { activeTab: '2' };
+    this.state = { activeTab: 't2' };
   }
 
   setTab(newActiveTabId) {
@@ -45,42 +45,50 @@ class StatelessDemo extends React.Component {
   render() {
     const { activeTab } = this.state;
 
-    const tabs = tabData.map((t, i) => {
+    const tabs = tabDescriptions.map((tabDescription, i) => {
       let innerCl = 'Tabs-tabInner';
-      if (t.id === activeTab) innerCl += ' is-active';
+      if (tabDescription.id === activeTab) innerCl += ' is-active';
       return (
         <li className='Tabs-tablistItem' key={i}>
-          <Tab tabId={t.id} className='Tabs-tab'>
+          <AriaTabPanel.Tab
+            id={tabDescription.id}
+            className='Tabs-tab'
+            active={tabDescription.id === activeTab}
+          >
             <div className={innerCl}>
-              {t.title}
+              {tabDescription.title}
             </div>
-          </Tab>
+          </AriaTabPanel.Tab>
         </li>
       );
     });
 
-    const panels = tabData.map((p, i) => {
+    const panels = tabDescriptions.map((tabDescription, i) => {
       return (
-        <TabPanel tabId={p.id} key={i}>
-          {p.content}
-        </TabPanel>
+        <AriaTabPanel.TabPanel
+          key={i}
+          tabId={tabDescription.id}
+          active={tabDescription.id === activeTab}
+        >
+          {tabDescription.content}
+        </AriaTabPanel.TabPanel>
       );
     });
 
     return (
-      <Wrapper
+      <AriaTabPanel.Wrapper
         onChange={this.setTab.bind(this)}
-        activeTabId='2'
+        activeTabId={this.state.activeTab}
       >
-        <TabList>
+        <AriaTabPanel.TabList>
           <ul className='Tabs-tablist'>
             {tabs}
           </ul>
-        </TabList>
+        </AriaTabPanel.TabList>
         <div className='Tabs-panel'>
           {panels}
         </div>
-      </Wrapper>
+      </AriaTabPanel.Wrapper>
     );
   }
 }

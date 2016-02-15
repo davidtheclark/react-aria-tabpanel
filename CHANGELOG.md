@@ -1,5 +1,15 @@
 # Changelog
 
+## Head
+- Add `letterNavigation` option, via prop in `Wrapper`.
+- Add `aria-describedby` on `TabPanel`s (pointing to id of their
+  corresponding `Tab`).
+  - Add `active` props to `Tab` and `TabPanel` for statelessness.
+- Remove `tabId` prop from `Tab` and `id` prop from `TabPanel`.
+  Now the `TabPanel`'s `tabId` prop should correspond with some `Tab`'s
+  `id` prop; and the `TabPanel`'s DOM node will automatically get an
+  id attribute of `\`${props.tabId}-panel\``.
+
 ## 3.0.3
 - Add `aria-selected` property to active tab.
 

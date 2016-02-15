@@ -1,3 +1,3 @@
-import './statefulDemo';
-import './statelessDemo';
-import './fancyDemo';
+require('./statefulDemo');
+require('./statelessDemo');
+require('./fancyDemo');

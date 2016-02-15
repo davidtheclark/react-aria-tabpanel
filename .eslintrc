@@ -29,7 +29,7 @@
     "no-nested-ternary": 2,
     "no-use-before-define": [2, "nofunc"],
     "quotes": [2, "single"],
-    "space-after-keywords": [2, "always"],
+    "keyword-spacing": [2, { "before": true, "after": true }],
     "space-before-blocks": [2, "always"],
     "space-before-function-paren": [2, "never"],
     "space-in-parens": [2, "never"],

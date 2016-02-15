@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Wrapper, Tab, TabList, TabPanel} from '../../src';
+import { Wrapper, Tab, TabList, TabPanel} from '../..';
 
 class FancyDemo extends React.Component {
   render() {
     return (
-      <Wrapper>
+      <Wrapper letterNavigation={true}>
         <TabList>
           <ul className='FancyTabs-tablist'>
             <li className='FancyTabs-tablistItem'>
-              <Tab tabId='t1' className='FancyTabs-tab'>
+              <Tab id='t1' className='FancyTabs-tab'>
                 {demoTab.bind(null, (
                   <div>
                     <span className='FancyTabs-tabIcon FancyTabs-tabIcon--map' />
@@ -21,7 +21,7 @@ class FancyDemo extends React.Component {
               </Tab>
             </li>
             <li className='FancyTabs-tablistItem'>
-              <Tab tabId='t2' className='FancyTabs-tab'>
+              <Tab id='t2' className='FancyTabs-tab'>
                 {demoTab.bind(null, (
                   <div>
                     <span className='FancyTabs-tabIcon FancyTabs-tabIcon--megaphone' />
@@ -33,7 +33,7 @@ class FancyDemo extends React.Component {
               </Tab>
             </li>
             <li className='FancyTabs-tablistItem'>
-              <Tab tabId='t3' className='FancyTabs-tab'>
+              <Tab id='t3' className='FancyTabs-tab'>
                 {demoTab.bind(null, (
                   <div>
                     <span className='FancyTabs-tabIcon FancyTabs-tabIcon--trophy' />

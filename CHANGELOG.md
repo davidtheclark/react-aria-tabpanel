@@ -1,6 +1,9 @@
 # Changelog
 
-## Head
+## 4.0.1
+- Fix bug caused by leftover ES2015 code.
+
+## 4.0.0
 - Add `letterNavigation` option, via prop in `Wrapper`.
 - Add `aria-describedby` on `TabPanel`s (pointing to id of their
   corresponding `Tab`).

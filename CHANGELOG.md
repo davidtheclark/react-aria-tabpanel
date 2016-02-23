@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.0.2
 - Fix more leftover ES2015 bugs (stupid :(), and fix ESLint config to catch them.
 - Change `react` and `react-dom` to `peerDependencies`.
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## Head
+- Fix more leftover ES2015 bugs (stupid :(), and fix ESLint config to catch them.
+
 ## 4.0.1
 - Fix bug caused by leftover ES2015 code.
 

@@ -1,4 +1,4 @@
 **/*-bundle.js
 **/*-bundle.min.js
 umd
-demo
+demo/**/*.js

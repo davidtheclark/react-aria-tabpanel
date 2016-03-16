@@ -1,6 +1,6 @@
 {
   "name": "react-aria-tabpanel",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "A style- and markup-agnostic, React-powered Tab Panel component that fulfills the WAI-ARIA Design Pattern",
   "main": "index.js",
   "scripts": {

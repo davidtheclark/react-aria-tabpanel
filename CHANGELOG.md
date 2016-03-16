@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.0.3
 - Fix bug caused when Tab or TabPanel tried to register themselves with their manager twice.
 
 ## 4.0.2

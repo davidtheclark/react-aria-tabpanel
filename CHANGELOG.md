@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.1.0
 - Allow universal/isomorphic rendering.
 
 ## 4.0.3

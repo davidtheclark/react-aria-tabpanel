@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.2.0
+- Allow arbitrary props to pass through to elements (not just `id`, `className`, `style`).
+
+## 4.1.0
+- Allow universal/isomorphic rendering.
+
+## 4.0.3
+- Fix bug caused when Tab or TabPanel tried to register themselves with their manager twice.
+
+## 4.0.2
+- Fix more leftover ES2015 bugs (stupid :(), and fix ESLint config to catch them.
+- Change `react` and `react-dom` to `peerDependencies`.
+
+## 4.0.1
+- Fix bug caused by leftover ES2015 code.
+
 ## 4.0.0
 - Add `letterNavigation` option, via prop in `Wrapper`.
 - Add `aria-describedby` on `TabPanel`s (pointing to id of their

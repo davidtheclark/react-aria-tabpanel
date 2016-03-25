@@ -3,16 +3,7 @@
   "env": {
     "node": true,
     "browser": true,
-    "es6": true,
-    "mocha": true,
   },
-  "ecmaFeatures": {
-    "modules": true,
-    "jsx": true
-  },
-  "plugins": [
-    "react"
-  ],
   "rules": {
     "comma-dangle": [2, "always-multiline"],
     "curly": 0,
@@ -34,10 +25,5 @@
     "space-before-function-paren": [2, "never"],
     "space-in-parens": [2, "never"],
     "space-unary-ops": 2,
-
-    "react/jsx-no-undef": 2,
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
   }
 }

@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.2.0
 - Allow arbitrary props to pass through to elements (not just `id`, `className`, `style`).
 
 ## 4.1.0

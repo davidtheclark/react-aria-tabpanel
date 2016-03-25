@@ -80,11 +80,7 @@ can read about how letter-key navigation in that module's ["String Searching" do
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**id** { String }: An id value for this element.
-
-**className** { String }: A class value for this element.
-
-**style** { Object }: An object of inline styles  for this element.
+*Any additional props (e.g. id, className, data-whatever) are passed directly to the HTML element.*
 
 ### `TabList`
 
@@ -98,11 +94,7 @@ All props are optional.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**id** { String }: An id value for this element.
-
-**className** { String }: A class value for this element.
-
-**style** { Object }: An object of inline styles  for this element.
+*Any additional props (e.g. id, className, data-whatever) are passed directly to the HTML element, unless TabList needs them itself.*
 
 ### `Tab`
 
@@ -132,19 +124,15 @@ identifier that ties this `Tab` to its `TabPanel`
 **active** { Boolean }: If you are controlling the state yourself (with an `onChange` function on your `Wrapper`),
 use this prop to tell the `Tab` whether it is active or not.
 
-**tag** { String }: The HTML tag for this element. Default: `'div'`.
-
-**id** { String }: An id value for this element.
-
-**className** { String }: A class value for this element.
-
-**style** { Object }: An object of inline styles  for this element.
-
 **letterNavigationText** { String }: If you are using letter-key navigation
 (having turned it on via the prop on `Wrapper`), you
 can use this prop to specify this `Tabs`'s searchable text.
 By default, the element's `textContent` is used — which is
 usually what you want.
+
+**tag** { String }: The HTML tag for this element. Default: `'div'`.
+
+*Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless Tab needs them itself.*
 
 ### `TabPanel`
 
@@ -173,11 +161,7 @@ use this prop to tell the `TabPanel` whether it is active or not.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**id** { String }: An id value for this element.
-
-**className** { String }: A class value for this element.
-
-**style** { Object }: An object of inline styles  for this element.
+*Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless TabPanel needs them itself.*
 
 ## Contributing & Development
 

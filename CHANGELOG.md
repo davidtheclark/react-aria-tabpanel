@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.2.1
 - Allow React 15 as peer dependency.
 
 ## 4.2.0

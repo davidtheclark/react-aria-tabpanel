@@ -1,5 +1,8 @@
 # Changelog
 
+## Head
+- Use `display: none` for inactive tab panels instead of not rendering them at all, preventing reloading of some resources.
+
 ## 4.2.1
 - Allow React 15 as peer dependency.
 

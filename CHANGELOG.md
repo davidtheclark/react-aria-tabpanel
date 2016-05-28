@@ -1,6 +1,6 @@
 # Changelog
 
-## Head
+## 4.2.2
 - Use `display: none` for inactive tab panels instead of not rendering them at all, preventing reloading of some resources.
 
 ## 4.2.1

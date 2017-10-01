@@ -37,7 +37,9 @@
     "widget"
   ],
   "dependencies": {
-    "focus-group": "^0.2.2"
+    "create-react-class": "^15.6.2",
+    "focus-group": "^0.2.2",
+    "prop-types": "^15.6.0"
   },
   "peerDependencies": {
     "react": "0.14.x || ^15.0.0",

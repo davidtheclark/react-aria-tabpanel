@@ -9,7 +9,7 @@
     "demo-dev": "npm run demo-watch & http-server demo",
     "lint": "eslint .",
     "test": "npm run lint",
-    "build": "browserify index.js -p bundle-collapser/plugin -x react -x react-dom -t babelify --standalone ariaTabPanel | uglifyjs --compress --mangle > umd/ariaTabPanel.js",
+    "build": "mkdir -p umd && browserify index.js -p bundle-collapser/plugin -x react -x react-dom -t babelify --standalone ariaTabPanel | uglifyjs --compress --mangle > umd/ariaTabPanel.js",
     "prepare": "npm run build"
   },
   "repository": {

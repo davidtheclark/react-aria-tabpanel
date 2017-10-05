@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.3.0
+- Use `prop-types` and `create-react-class` packages for compatibility with newer versions of React.
+
 ## 4.2.2
 - Use `display: none` for inactive tab panels instead of not rendering them at all, preventing reloading of some resources.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## HEAD
+
+- Add `role` prop to `TabList`, `Tab`, and `TabPanel`.
+
 ## 4.3.0
 - Use `prop-types` and `create-react-class` packages for compatibility with newer versions of React.
 

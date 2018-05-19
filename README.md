@@ -49,7 +49,7 @@ The AriaTabPanel object exposes four components: `Wrapper`, `TabList`, `Tab`, an
 
 **`TabList`, `Tab`, and `TabPanel` must always be wrapped in a `Wrapper`.**
 
-### Wrapper
+### `Wrapper`
 
 A simple component to group a `TabList`/`Tab`/`TabPanel` set, coordinating their interactions.
 *It should wrap your entire tab panel widget.*
@@ -94,7 +94,7 @@ All props are optional.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**role** { String }: The HTML tag for this element. Default: `'tablist'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
+**role** { String }: The `role` attribute for the element. Default: `'tablist'`. The parameter is useful when you have want the same interaction as tabs but want screen readers to describe the content differently.
 
 *Any additional props (e.g. id, className, data-whatever) are passed directly to the HTML element, unless TabList needs them itself.*
 
@@ -134,7 +134,7 @@ usually what you want.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**role** { String }: The HTML tag for this element. Default: `'tab'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
+**role** { String }: The `role` attribute for the element. Default: `'tab'`. The parameter is useful when you have want the same interaction as tabs but want screen readers to describe the content differently.
 
 *Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless Tab needs them itself.*
 
@@ -165,7 +165,7 @@ use this prop to tell the `TabPanel` whether it is active or not.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
-**role** { String }: The HTML tag for this element. Default: `'tabpanel'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
+**role** { String }: The `role` attribute for the element. Default: `'tabpanel'`. The parameter is useful when you have want the same interaction as tabs but want screen readers to describe the content differently.
 
 *Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless TabPanel needs them itself.*
 

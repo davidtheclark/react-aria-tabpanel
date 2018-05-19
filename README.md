@@ -94,6 +94,8 @@ All props are optional.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
+**role** { String }: The HTML tag for this element. Default: `'tablist'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
+
 *Any additional props (e.g. id, className, data-whatever) are passed directly to the HTML element, unless TabList needs them itself.*
 
 ### `Tab`
@@ -132,6 +134,8 @@ usually what you want.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
 
+**role** { String }: The HTML tag for this element. Default: `'tab'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
+
 *Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless Tab needs them itself.*
 
 ### `TabPanel`
@@ -160,6 +164,8 @@ to this `TabPanel`.
 use this prop to tell the `TabPanel` whether it is active or not.
 
 **tag** { String }: The HTML tag for this element. Default: `'div'`.
+
+**role** { String }: The HTML tag for this element. Default: `'tabpanel'`. The parameter is useful when you have nested `'Wrapper'`, with sub element to be focusable, like button, hyperlink or context menu, and you want the screen reader to appropriately describe the content of the focused element. For example, in the Windows narrator, it will alwasy say "Selected ... Tab" when the role is `'Tab'`.
 
 *Any additional props (e.g. className, data-whatever) are passed directly to the HTML element, unless TabPanel needs them itself.*
 

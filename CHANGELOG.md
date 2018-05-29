@@ -1,6 +1,6 @@
 # Changelog
 
-## HEAD
+## 4.4.0
 
 - Add `role` prop to `TabList`, `Tab`, and `TabPanel`.
 - Added support for controlling tab state externally.

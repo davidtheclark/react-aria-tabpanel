@@ -1,6 +1,6 @@
 {
   "name": "react-aria-tabpanel",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "description": "A style- and markup-agnostic, React-powered Tab Panel component that fulfills the WAI-ARIA Design Pattern",
   "main": "index.js",
   "scripts": {
@@ -59,8 +59,8 @@
     "bundle-collapser": "1.2.1",
     "eslint": "2.7.0",
     "http-server": "0.9.0",
-    "react": "15.0.1",
-    "react-dom": "15.0.1",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
     "uglify-js": "2.6.2",
     "watchify": "3.7.0"
   }

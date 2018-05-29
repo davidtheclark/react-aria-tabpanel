@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.4.0
+
+- Add `role` prop to `TabList`, `Tab`, and `TabPanel`.
+- Added support for controlling tab state externally.
+- Added support for dynamically adding and removing tabs.
+
 ## 4.3.0
 - Use `prop-types` and `create-react-class` packages for compatibility with newer versions of React.
 

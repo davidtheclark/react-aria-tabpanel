@@ -1,5 +1,12 @@
 # react-aria-tabpanel [![Build Status](https://travis-ci.org/davidtheclark/react-aria-tabpanel.svg?branch=master)](https://travis-ci.org/davidtheclark/react-aria-tabpanel)
 
+---
+
+**SEEKING CO-MAINTAINERS!** Continued development of this project is going to require the work of one or more dedicated co-maintainers (or forkers). If you're interested, please comment in [this issue](https://github.com/davidtheclark/react-aria-tabpanel/issues/28).
+
+---
+
+
 A React component that helps you build *accessible* tabs, by providing keyboard interactions and ARIA attributes described in [the WAI-ARIA Tab Panel Design Pattern](http://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 Please check out [the demo](http://davidtheclark.github.io/react-aria-tabpanel/demo/).
